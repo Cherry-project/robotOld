@@ -4,6 +4,7 @@ from pypot.vrep import from_vrep
 from poppy.creatures import PoppyHumanoid
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
+from behavior.yes import YesBehave, YesBehaveSinus
 
 
 
@@ -23,8 +24,12 @@ class Cherry():
             m.compliant_behavior = 'safe'
             m.goto_behavior = 'minjerk'
 
+
+        #Attach your primitive here
         robot.attach_primitive(UpperBodyIdleMotion(robot, 50), 'upper_body_idle')
         robot.attach_primitive(HeadIdleMotion(robot, 50), "head_idle")
+        robot.attach_primitive(YesBehave(robot, 0.8), "yes_behave")
+
 
 
 
