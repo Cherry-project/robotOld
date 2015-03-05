@@ -1,11 +1,8 @@
 # cherry-project
-This is the repository for the Cherry Projet.
-More information on facebook : https://www.facebook.com/projetcherry
 
-test git Sophie
+Voici le dépot collaboratif du projet Cherry.
 
-test git Léa
+Ce projet consiste, grâce au Poppy de l'inria, d'avoir un robot permettant de réduire l'isolement social des enfants hospitalisé, en étant son compagnon.
 
-test git Adil
 
-test git laura
+Plus d'information sur notre [facebook](https://www.facebook.com/projetcherry), notre [twitter](https://twitter.com/ProjetCherry) ou notre [blog](https://projetcherry.wordpress.com/)
