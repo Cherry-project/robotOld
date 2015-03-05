@@ -5,4 +5,5 @@ cherry = Cherry()
 cherry.setup()
 
 cherry.robot.wave_behave.start()
-cherry.robot.wave_behave.wait_to_stop()
+
+time.sleep(15)

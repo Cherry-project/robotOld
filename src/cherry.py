@@ -5,11 +5,8 @@ from poppy.creatures import PoppyHumanoid
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
-<<<<<<< HEAD
 from behavior.wave import WaveBehave
-=======
 from behavior.no import NoBehave
->>>>>>> bbaca13a99c3d98d3ae7b15dd03a90541be72e07
 
 
 
