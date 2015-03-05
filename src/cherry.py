@@ -5,7 +5,11 @@ from poppy.creatures import PoppyHumanoid
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
+<<<<<<< HEAD
 from behavior.wave import WaveBehave
+=======
+from behavior.no import NoBehave
+>>>>>>> bbaca13a99c3d98d3ae7b15dd03a90541be72e07
 
 
 
@@ -31,6 +35,8 @@ class Cherry():
         robot.attach_primitive(HeadIdleMotion(robot, 50), "head_idle")
         robot.attach_primitive(YesBehave(robot, 1), "yes_behave")
         robot.attach_primitive(WaveBehave(robot, 0.5), "wave_behave")
+        robot.attach_primitive(NoBehave(robot, 1), "no_behave")
+
 
 
 
