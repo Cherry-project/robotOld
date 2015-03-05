@@ -10,7 +10,7 @@ class YesBehave(pypot.primitive.LoopPrimitive):
     def __init__(self, robot, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot, freq)
 
-        self.my_sinus = Sinus(self.robot, 50, [self.robot.head_y, ], amp=10, freq=freq)
+        self.my_sinus = Sinus(self.robot, 50, [self.robot.head_y, ], amp=8, freq=freq, offset=10)
 
     def setup(self):
         self.robot.head_y.compliant = False
