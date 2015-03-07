@@ -7,7 +7,9 @@ from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
 from behavior.wave import WaveBehave
 from behavior.no import NoBehave
-
+from behavior.crossArms import CrossArmsBehave
+from behavior.showLeft import ShowLeftBehave
+from behavior.showRight import ShowRightBehave
 
 
 class Cherry():
@@ -33,6 +35,9 @@ class Cherry():
         robot.attach_primitive(YesBehave(robot, 1), "yes_behave")
         robot.attach_primitive(WaveBehave(robot, 0.5), "wave_behave")
         robot.attach_primitive(NoBehave(robot, 1), "no_behave")
+        robot.attach_primitive(CrossArmsBehave(robot), "cross_arms_behave")
+        robot.attach_primitive(ShowLeftBehave(robot), "show_left_behave")
+        robot.attach_primitive(ShowRightBehave(robot), "show_right_behave")
 
 
 
