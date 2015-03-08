@@ -98,7 +98,7 @@ if __name__ == "__main__":
 	#il faut aussi changer le chemin aux cascades en haut
     #model = cv2.createEigenFaceRecognizer()
     #model = cv2.createFisherFaceRecognizer()
-    model = cv2.createLBPHFaceRecognizer()    
+    model = cv2.createLBPHFaceRecognizer(threshold=100.0)    
     
    
     images,labels,names = retrain(imgdir,model,face_size)
@@ -130,7 +130,7 @@ if __name__ == "__main__":
                 [p_label, p_confidence] = model.predict(np.asarray(roi))
                 name = "unknown"
                 if p_label != -1 : name = names[p_label]
-                cv2.putText( img, "%s %s" % (name,centre),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+                cv2.putText( img, "%s %.2f %s" % (name,p_label,centre),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
             break # use only 1st detected
 
         cv2.imshow('Face Recognition For Poppy', img)
