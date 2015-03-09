@@ -18,7 +18,7 @@ from behavior.takeLeftEar import TakeLeftEarBehave
 from behavior.rightHandMouv import RightHandMouvBehave
 from behavior.comeMouv import ComeMouvBehave
 from behavior.keepFrontMouv import KeepFrontMouvBehave
-
+from behavior.normal import NormalBehave
 
 class Cherry():
     def __init__(self):
@@ -40,9 +40,9 @@ class Cherry():
         #Attach your primitive here
         robot.attach_primitive(UpperBodyIdleMotion(robot, 50), 'upper_body_idle')
         robot.attach_primitive(HeadIdleMotion(robot, 50), "head_idle")
-        robot.attach_primitive(YesBehave(robot, 1), "yes_behave")
-        robot.attach_primitive(WaveBehave(robot, 0.5), "wave_behave")
-        robot.attach_primitive(NoBehave(robot, 1), "no_behave")
+        robot.attach_primitive(YesBehave(robot, 50), "yes_behave")
+        robot.attach_primitive(WaveBehave(robot, 50), "wave_behave")
+        robot.attach_primitive(NoBehave(robot, 50), "no_behave")
         robot.attach_primitive(CrossArmsBehave(robot), "cross_arms_behave")
         robot.attach_primitive(CrossHandsBehave(robot), "cross_hands_behave")
         robot.attach_primitive(ShowLeftBehave(robot), "show_left_behave")
@@ -50,9 +50,11 @@ class Cherry():
         robot.attach_primitive(ShowFrontBehave(robot), "show_front_behave")
         robot.attach_primitive(TakeHeadBehave(robot), "take_head_behave")
         robot.attach_primitive(TakeLeftEarBehave(robot), "take_left_ear_behave")
-        robot.attach_primitive(RightHandMouvBehave(robot, 1), "right_hand_mouv_behave")
-        robot.attach_primitive(ComeMouvBehave(robot, 1), "come_mouv_behave")
-        robot.attach_primitive(KeepFrontMouvBehave(robot, 1), "keep_front_mouv_behave")
+        robot.attach_primitive(TakeRightEarBehave(robot), "take_right_ear_behave")
+        robot.attach_primitive(RightHandMouvBehave(robot, 50), "right_hand_mouv_behave")
+        robot.attach_primitive(ComeMouvBehave(robot, 50), "come_mouv_behave")
+        robot.attach_primitive(KeepFrontMouvBehave(robot, 50), "keep_front_mouv_behave")
+        robot.attach_primitive(NormalBehave(robot), "normal_behave")
 
 
 

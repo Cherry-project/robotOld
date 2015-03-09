@@ -2,7 +2,7 @@ import numpy
 import time
 
 import pypot.primitive
-from pypot.primitive.utils import Sinus
+
 
 class CrossHandsBehave(pypot.primitive.Primitive):
     def run(self):

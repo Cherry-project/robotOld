@@ -2,11 +2,11 @@ import numpy
 import time
 
 import pypot.primitive
-from pypot.primitive.utils import Sinus
 
 class CrossArmsBehave(pypot.primitive.Primitive):
     def run(self):
         poppy = self.robot
+
         poppy.r_shoulder_x.goto_position(-10, 4, wait=False)
         poppy.r_shoulder_y.goto_position(-20, 4, wait=False)
         

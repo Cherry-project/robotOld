@@ -2,11 +2,14 @@ import numpy
 import time
 
 import pypot.primitive
-from pypot.primitive.utils import Sinus
+
 
 class TakeHeadBehave(pypot.primitive.Primitive):
     def run(self):
         poppy = self.robot
+
+        for m in poppy.l_arm + poppy.r_arm:
+            m.compliant = False
 
         poppy.head_y.goto_position(45, 4, wait=False)
 
@@ -21,7 +24,5 @@ class TakeHeadBehave(pypot.primitive.Primitive):
 
         poppy.l_arm_z.goto_position(-20, 4, wait=False)
         poppy.l_elbow_y.goto_position(-140, 4, wait=True)
-        
-        time.sleep(1)
 
 

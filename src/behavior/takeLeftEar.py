@@ -2,11 +2,13 @@ import numpy
 import time
 
 import pypot.primitive
-from pypot.primitive.utils import Sinus
 
 class TakeLeftEarBehave(pypot.primitive.Primitive):
     def run(self):
         poppy = self.robot
+
+        for m in poppy.head + poppy.l_arm:
+            m.compliant = False
 
         poppy.head_y.goto_position(10, 3, wait=False)
         poppy.head_z.goto_position(-20, 3, wait=False)
@@ -16,7 +18,5 @@ class TakeLeftEarBehave(pypot.primitive.Primitive):
         
         poppy.l_arm_z.goto_position(-10, 3, wait=False)
         poppy.l_elbow_y.goto_position(-140, 3, wait=True)
-        
-        time.sleep(1)
 
 

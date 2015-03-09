@@ -18,11 +18,8 @@ class WaveBehave(pypot.primitive.LoopPrimitive):
         for m in robot.l_arm:
             m.compliant = False
 
-
-        robot.l_arm_z.goto_position(90, 1)
-        robot.l_shoulder_x.goto_position(90,1)
-
-        time.sleep(1)
+        robot.l_arm_z.goto_position(90, 1, wait=False)
+        robot.l_shoulder_x.goto_position(90,1, wait=True)
 
         self.my_sinus.start()
 
@@ -31,11 +28,9 @@ class WaveBehave(pypot.primitive.LoopPrimitive):
 
         self.my_sinus.stop()
 
-        robot.l_arm_z.goto_position(0, 1)
-        robot.l_shoulder_x.goto_position(0,1)
-        robot.l_elbow_y.goto_position(0,1)
-
-        time.sleep(1)
+        robot.l_arm_z.goto_position(0, 1, wait=False)
+        robot.l_shoulder_x.goto_position(0, 1, wait=False)
+        robot.l_elbow_y.goto_position(0, 1, wait=True)
 
     def update(self):
         pass
