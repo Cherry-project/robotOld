@@ -30,11 +30,11 @@ class ComeMouvBehave(pypot.primitive.LoopPrimitive):
         robot = self.robot
 
         self.my_sinus.stop()
+        
+        for m in robot.r_arm:
+            m.goto_position(0, 1, wait=False)
 
-        robot.r_arm_z.goto_position(0, 1, wait=False)
-        robot.r_shoulder_x.goto_position(0, 1, wait=False)
-        robot.r_shoulder_y.goto_position(0, 1, wait=False)
-        robot.r_elbow_y.goto_position(0, 1, wait=True)
+        time.sleep(1)
 
 
     def update(self):

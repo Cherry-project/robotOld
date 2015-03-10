@@ -20,8 +20,6 @@ class KeepFrontMouvBehave(pypot.primitive.LoopPrimitive):
         
         robot.r_shoulder_x.goto_position(-20, 1, wait=False)
         robot.r_shoulder_y.goto_position(-50, 1, wait=True)
-        
-        time.sleep(1)
 
         self.my_sinus.start()
 
@@ -30,10 +28,8 @@ class KeepFrontMouvBehave(pypot.primitive.LoopPrimitive):
 
         self.my_sinus.stop()
 
-        robot.r_arm_z.goto_position(0, 1)
-        robot.r_shoulder_x.goto_position(0,1)
-        robot.r_shoulder_y.goto_position(0,1)
-        robot.r_elbow_y.goto_position(0,1)
+        for m in robot.r_arm:
+            m.goto_position(0, 1, wait=False)
 
         time.sleep(1)
 
