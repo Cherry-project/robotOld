@@ -30,10 +30,10 @@ class RightHandMouvBehave(pypot.primitive.LoopPrimitive):
 
         self.my_sinus.stop()
 
-        robot.r_arm_z.goto_position(0, 1, wait=False)
-        robot.r_shoulder_x.goto_position(0, 1, wait=False)
-        robot.r_shoulder_y.goto_position(0, 1, wait=False)
-        robot.r_elbow_y.goto_position(0, 1, wait=True)
+        for m in robot.r_arm:
+            m.goto_position(0, 1, wait=False)
+
+        time.sleep(1)
 
     def update(self):
         pass
