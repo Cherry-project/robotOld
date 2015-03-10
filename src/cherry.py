@@ -19,6 +19,8 @@ from behavior.rightHandMouv import RightHandMouvBehave
 from behavior.comeMouv import ComeMouvBehave
 from behavior.keepFrontMouv import KeepFrontMouvBehave
 from behavior.normal import NormalBehave
+from behavior.salute import SaluteBehave
+from behavior.think import ThinkBehave
 
 class Cherry():
     def __init__(self):
@@ -55,6 +57,8 @@ class Cherry():
         robot.attach_primitive(ComeMouvBehave(robot, 50), "come_mouv_behave")
         robot.attach_primitive(KeepFrontMouvBehave(robot, 50), "keep_front_mouv_behave")
         robot.attach_primitive(NormalBehave(robot), "normal_behave")
+        robot.attach_primitive(SaluteBehave(robot,50), "salute_behave")
+        robot.attach_primitive(ThinkBehave(robot,50), "think_behave")
 
 
 
