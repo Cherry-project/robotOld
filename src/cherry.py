@@ -57,8 +57,8 @@ class Cherry():
         robot.attach_primitive(ComeMouvBehave(robot, 50), "come_mouv_behave")
         robot.attach_primitive(KeepFrontMouvBehave(robot, 50), "keep_front_mouv_behave")
         robot.attach_primitive(NormalBehave(robot), "normal_behave")
-        robot.attach_primitive(SaluteBehave(robot,50), "salute_behave")
-        robot.attach_primitive(ThinkBehave(robot,50), "think_behave")
+        robot.attach_primitive(SaluteBehave(robot), "salute_behave")
+        robot.attach_primitive(ThinkBehave(robot), "think_behave")
 
 
 
