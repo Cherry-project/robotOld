@@ -9,9 +9,8 @@ class ComeMouvBehave(pypot.primitive.LoopPrimitive):
 
     def __init__(self, robot, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot, freq)
-        
-        robot = self.robot
-        self.my_sinus = Sinus(self.robot, 50, [robot.r_elbow_y], amp=40, freq=1, offset=-90)
+
+        self.my_sinus = Sinus(self.robot, 50, [self.robot.r_elbow_y, self.robot.r_arm_z], amp=20, freq=1, offset=-20)
 
     def setup(self):
         robot = self.robot
@@ -19,10 +18,10 @@ class ComeMouvBehave(pypot.primitive.LoopPrimitive):
         for m in robot.r_arm:
             m.compliant = False
         
-        robot.r_shoulder_x.goto_position(-40, 1, wait=False)
-        robot.r_shoulder_y.goto_position(-50, 1, wait=False)
-        robot.r_arm_z.goto_position(40, 2, wait=True)
-        #robot.r_elbow_y.goto_position(-100, 2, wait=True)
+        robot.r_shoulder_x.goto_position(-20, 1, wait=False)
+        robot.r_shoulder_y.goto_position(-30, 1, wait=False)
+        robot.r_arm_z.goto_position(100, 2, wait=False)
+        robot.r_elbow_y.goto_position(-100, 2, wait=True)
 
         self.my_sinus.start()
 
@@ -30,12 +29,11 @@ class ComeMouvBehave(pypot.primitive.LoopPrimitive):
         robot = self.robot
 
         self.my_sinus.stop()
-        
+
         for m in robot.r_arm:
             m.goto_position(0, 1, wait=False)
 
         time.sleep(1)
-
 
     def update(self):
         pass

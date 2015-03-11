@@ -9,9 +9,11 @@ class RightHandMouvBehave(pypot.primitive.LoopPrimitive):
 
     def __init__(self, robot, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot, freq)
-
-        self.my_sinus = Sinus(self.robot, 50, [self.robot.r_elbow_y, self.robot.r_arm_z], amp=20, freq=1, offset=-20)
-
+        pypot.primitive.utils.Sinus.__init__(self, robot, freq)
+        
+        self.my_sinus = Sinus(self.robot, 50, [self.robot.r_elbow_y], amp=20, freq=1, offset=-40)
+        self.my_cosinus = Cosinus(self.robot, 50, [self.robot.r_arm_z], amp=20, freq=1, offset=-20)
+        
     def setup(self):
         robot = self.robot
 
