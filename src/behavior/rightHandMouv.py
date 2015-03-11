@@ -3,13 +3,13 @@ import time
 
 
 import pypot.primitive
-from pypot.primitive.utils import Sinus
+from pypot.primitive.utils import Sinus, Cosinus
 
 class RightHandMouvBehave(pypot.primitive.LoopPrimitive):
 
     def __init__(self, robot, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot, freq)
-        pypot.primitive.utils.Sinus.__init__(self, robot, freq)
+        #pypot.primitive.utils.Sinus.__init__(self, robot, freq)
         
         self.my_sinus = Sinus(self.robot, 50, [self.robot.r_elbow_y], amp=20, freq=1, offset=-40)
         self.my_cosinus = Cosinus(self.robot, 50, [self.robot.r_arm_z], amp=20, freq=1, offset=-20)
@@ -26,14 +26,16 @@ class RightHandMouvBehave(pypot.primitive.LoopPrimitive):
         robot.r_elbow_y.goto_position(-100, 2, wait=True)
 
         self.my_sinus.start()
+        self.my_cosinus.start()
 
     def teardown(self):
         robot = self.robot
 
         self.my_sinus.stop()
+        self.my_cosinus.stop()
 
         for m in robot.r_arm:
-            m.goto_position(0, 1, wait=False)
+            m.compliant = True
 
         time.sleep(1)
 

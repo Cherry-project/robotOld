@@ -16,7 +16,7 @@ class BowBehave(pypot.primitive.Primitive):
 
         poppy.head_y.goto_position(0, 4, wait=False)
 
-        poppy.r_arm_z.goto_position(90, 4, wait=False)
+        #poppy.r_arm_z.goto_position(90, 4, wait=False)
         poppy.r_elbow_y.goto_position(-90, 4, wait=False)
         poppy.r_shoulder_y.goto_position(-50, 4, wait=False)
 
@@ -25,7 +25,7 @@ class BowBehave(pypot.primitive.Primitive):
 
         #time.sleep(5)
 
-        poppy.abs_y.goto_position(70, 4, wait=True)
+        poppy.bust_y.goto_position(70, 4, wait=True)
 
 
 

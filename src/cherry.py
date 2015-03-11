@@ -1,6 +1,7 @@
 import time
 
 from pypot.vrep import from_vrep
+from pypot.robot import from_json
 from poppy.creatures import PoppyHumanoid
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
@@ -21,14 +22,20 @@ from behavior.keepFrontMouv import KeepFrontMouvBehave
 from behavior.normal import NormalBehave
 from behavior.salute import SaluteBehave
 from behavior.think import ThinkBehave
+from behavior.copyArm import CopyArmBehave
+from behavior.bow import BowBehave
 
 class Cherry():
     def __init__(self):
-        # if simulator is None:
-        #     print "Cherry ne marche que sur simulateur pour le moment. Utiliser Cherry(simulator='vrep')"
+        #Simulateur :
+        #self.robot = PoppyHumanoid(simulator='vrep')
 
-        # else:
-        self.robot = PoppyHumanoid(simulator='vrep')
+        #Vrai :
+        self.robot = from_json("../utils/poppy_torso_config.json")
+        self.robot.start_sync()
+
+        for m in self.robot.torso:
+            m.compliant = False
 
     def setup(self):
 
@@ -59,7 +66,8 @@ class Cherry():
         robot.attach_primitive(NormalBehave(robot), "normal_behave")
         robot.attach_primitive(SaluteBehave(robot), "salute_behave")
         robot.attach_primitive(ThinkBehave(robot), "think_behave")
-
+        robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
+        robot.attach_primitive(BowBehave(robot), "bow_behave")
 
 
 
