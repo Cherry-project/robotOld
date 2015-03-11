@@ -5,6 +5,6 @@ from cherry import Cherry
 cherry = Cherry()
 cherry.setup()
 
-cherry.robot.right_hand_mouv_behave.start()
+cherry.robot.bow_behave.start()
 
 time.sleep(15)
