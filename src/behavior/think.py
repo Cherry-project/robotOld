@@ -16,7 +16,6 @@ class ThinkBehave(pypot.primitive.Primitive):
 
         for m in poppy.r_arm:
            m.compliant = False
-        print "1"
 
         poppy.head_y.goto_position(-10, 4, wait=False)
         poppy.head_z.goto_position(-20, 4, wait=False)

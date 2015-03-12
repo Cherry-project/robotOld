@@ -26,16 +26,22 @@ from behavior.copyArm import CopyArmBehave
 from behavior.bow import BowBehave
 
 class Cherry():
-    def __init__(self):
-        #Simulateur :
-        #self.robot = PoppyHumanoid(simulator='vrep')
+    def __init__(self, simulator=None):
+        if simulator is not None:
+
+            self.robot = PoppyHumanoid(simulator='vrep')
 
         #Vrai :
-        self.robot = from_json("../utils/poppy_torso_config.json")
-        self.robot.start_sync()
+        else:
+            self.robot = from_json("../utils/poppy_torso_config.json")
+            self.robot.start_sync()
 
-        for m in self.robot.torso:
-            m.compliant = False
+            for m in self.robot.motors:
+                m.moving_speed = 60
+
+            for m in self.robot.torso:
+                m.compliant = False
+
 
     def setup(self):
 
@@ -68,34 +74,3 @@ class Cherry():
         robot.attach_primitive(ThinkBehave(robot), "think_behave")
         robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
         robot.attach_primitive(BowBehave(robot), "bow_behave")
-
-
-
-
-# print "test"
-
-# cherry = PoppyHumanoid(simulator='vrep')
-
-
-# print "debut de simulation"
-
-# print "primitive : ", cherry.active_primitives
-
-
-# idle_body = UpperBodyIdleMotion(cherry, 50)
-# idle_head = HeadIdleMotion(cherry, 50)
-
-
-# idle_head.start()
-# idle_body.start()
-
-# print "primitive : ", cherry.active_primitives
-
-
-
-
-# time.sleep(20)
-# # idle_head.wait_to_stop()
-# # idle_body.wait_to_stop()
-# print "fin de simulation"
-# cherry.stop_simulation()
