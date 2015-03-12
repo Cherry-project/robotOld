@@ -11,7 +11,7 @@ class TalkThreeBehave(pypot.primitive.Primitive):
 
         poppy = self.robot
 
-        for m in poppy.r_arm:
+        for m in poppy.l_arm:
             m.compliant = False
 
         poppy.l_shoulder_x.goto_position(20, 4, wait=False)
