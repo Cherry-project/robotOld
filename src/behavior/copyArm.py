@@ -26,7 +26,5 @@ class CopyArmBehave(pypot.primitive.LoopPrimitive):
         robot.l_elbow_y.goal_position = robot.r_elbow_y.present_position
 
     def teardown(self):
-        for m in self.robot.arms:
-            m.compliant = False
-            self.robot.goto_position({m.name: 0. for m in self.robot.arms},
-            2., wait=True)
+
+        self.robot.normal_behave.start()

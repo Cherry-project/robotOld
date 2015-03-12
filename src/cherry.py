@@ -31,17 +31,6 @@ from behavior.talkFour import TalkFourBehave
 
 class Cherry():
 
-    def __init__(self):
-        #Simulateur :
-        self.robot = PoppyHumanoid(simulator='vrep')
-
-        #Vrai :
-        #self.robot = from_json("../utils/poppy_torso_config.json")
-        #self.robot.start_sync()
-
-        # for m in self.robot.torso:
-        #     m.compliant = False
-
     def __init__(self, simulator=None):
         if simulator is not None:
 
@@ -95,39 +84,3 @@ class Cherry():
         robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
         robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")
         robot.attach_primitive(TalkFourBehave(robot), "talk_four_behave")
-
-
-
-
-
-# print "test"
-
-# cherry = PoppyHumanoid(simulator='vrep')
-
-
-# print "debut de simulation"
-
-# print "primitive : ", cherry.active_primitives
-
-
-# idle_body = UpperBodyIdleMotion(cherry, 50)
-# idle_head = HeadIdleMotion(cherry, 50)
-
-
-# idle_head.start()
-# idle_body.start()
-
-# print "primitive : ", cherry.active_primitives
-
-
-
-
-# time.sleep(20)
-# # idle_head.wait_to_stop()
-# # idle_body.wait_to_stop()
-# print "fin de simulation"
-# cherry.stop_simulation()
-=======
-        robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
-        robot.attach_primitive(BowBehave(robot), "bow_behave")
->>>>>>> 20fbf0136602250095c93d7223e0afb0669d5ba1

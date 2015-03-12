@@ -28,10 +28,6 @@ class WaveBehave(pypot.primitive.LoopPrimitive):
 
         self.my_sinus.stop()
 
-        for m in robot.l_arm:
-            m.goto_position(0, 1, wait=False)
-
-        time.sleep(1)
-
+        self.robot.normal_behave.start()
     def update(self):
         pass
