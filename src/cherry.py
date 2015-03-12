@@ -22,7 +22,7 @@ from behavior.keepFrontMouv import KeepFrontMouvBehave
 from behavior.normal import NormalBehave
 from behavior.salute import SaluteBehave
 from behavior.think import ThinkBehave
-#from behavior.copyArm import CopyArmBehave
+from behavior.copyArm import CopyArmBehave
 from behavior.bow import BowBehave
 from behavior.talkOne import TalkOneBehave
 from behavior.talkTwo import TalkTwoBehave
@@ -30,6 +30,7 @@ from behavior.talkThree import TalkThreeBehave
 from behavior.talkFour import TalkFourBehave
 
 class Cherry():
+
     def __init__(self):
         #Simulateur :
         self.robot = PoppyHumanoid(simulator='vrep')
@@ -40,6 +41,24 @@ class Cherry():
 
         # for m in self.robot.torso:
         #     m.compliant = False
+
+    def __init__(self, simulator=None):
+        if simulator is not None:
+
+            self.robot = PoppyHumanoid(simulator='vrep')
+
+        #Vrai :
+        else:
+            self.robot = from_json("../utils/poppy_torso_config.json")
+            self.robot.start_sync()
+
+            for m in self.robot.motors:
+                m.moving_speed = 60
+
+            for m in self.robot.torso:
+                m.compliant = False
+
+
 
     def setup(self):
 
@@ -70,7 +89,7 @@ class Cherry():
         robot.attach_primitive(NormalBehave(robot), "normal_behave")
         robot.attach_primitive(SaluteBehave(robot), "salute_behave")
         robot.attach_primitive(ThinkBehave(robot), "think_behave")
-        #robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
+        robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
         robot.attach_primitive(BowBehave(robot), "bow_behave")
         robot.attach_primitive(TalkOneBehave(robot), "talk_one_behave")
         robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
@@ -108,3 +127,7 @@ class Cherry():
 # # idle_body.wait_to_stop()
 # print "fin de simulation"
 # cherry.stop_simulation()
+=======
+        robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
+        robot.attach_primitive(BowBehave(robot), "bow_behave")
+>>>>>>> 20fbf0136602250095c93d7223e0afb0669d5ba1
