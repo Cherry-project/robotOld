@@ -1,8 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import time
 
 from pypot.vrep import from_vrep
 from pypot.robot import from_json
 from poppy.creatures import PoppyHumanoid
+
+from textToSpeech.speak import Speak
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
@@ -86,3 +91,4 @@ class Cherry():
         robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")
         robot.attach_primitive(TalkFourBehave(robot), "talk_four_behave")
         robot.attach_primitive(TrackingBehave(robot,50), "tracking_behave")
+        robot.attach_primitive(Speak(robot), "speak")
