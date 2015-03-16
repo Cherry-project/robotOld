@@ -28,6 +28,7 @@ from behavior.talkOne import TalkOneBehave
 from behavior.talkTwo import TalkTwoBehave
 from behavior.talkThree import TalkThreeBehave
 from behavior.talkFour import TalkFourBehave
+from behavior.tracking import TrackingBehave
 
 class Cherry():
 
@@ -84,3 +85,4 @@ class Cherry():
         robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
         robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")
         robot.attach_primitive(TalkFourBehave(robot), "talk_four_behave")
+        robot.attach_primitive(TrackingBehave(robot,50), "tracking_behave")
