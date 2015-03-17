@@ -9,9 +9,9 @@ import random
 rand = random.Random()
 #aucune idee sur la pertinence de cette ligne en terme de securite ou de qualite. sys.argv pas encore assimilee
 #LBP est plus rapide mais moins precise 10 a 20% par rapport a Haar
-sys.argv=["C:\Users\Adil\Desktop\Face_Recognition.py",'C:\\Users\\Adil\\Desktop\\img',"C:\Program Files (x86)\opencv\data\lbpcascades\lbpcascade_frontalface.xml"]
+#sys.argv=["C:\Users\Adil\Desktop\Face_Recognition.py",'C:\\Users\\Adil\\Desktop\\img',"C:\Program Files (x86)\opencv\data\lbpcascades\lbpcascade_frontalface.xml"]
 #sys.argv=["C:\Users\Adil\Desktop\Face_Recognition.py",'C:\\Users\\Adil\\Desktop\\img',"C:\Program Files (x86)\opencv\data\haarcascades\haarcascade_frontalface_alt2.xml"]
-#sys.argv=["C:\Users\Adil\Desktop\Face_Recognition.py",'C:\\Users\\Adil\\Desktop\\img',"C:\Program Files (x86)\opencv\data\haarcascades\haarcascade_frontalface_default.xml"]
+sys.argv=["C:\Users\Adil\Desktop\Face_Recognition.py",'C:\\Users\\Adil\\Desktop\\img',"C:\Program Files (x86)\opencv\data\haarcascades\haarcascade_frontalface_default.xml"]
 
 def read_images(path, sz=None):
    
