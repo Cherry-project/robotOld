@@ -8,6 +8,7 @@ from pypot.robot import from_json
 from poppy.creatures import PoppyHumanoid
 
 from textToSpeech.speak import Speak
+from textToSpeech.say_hello import SayHello
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
@@ -55,6 +56,8 @@ class Cherry():
 
 
 
+
+
     def setup(self):
 
         robot = self.robot
@@ -92,3 +95,4 @@ class Cherry():
         robot.attach_primitive(TalkFourBehave(robot), "talk_four_behave")
         robot.attach_primitive(TrackingBehave(robot,50), "tracking_behave")
         robot.attach_primitive(Speak(robot), "speak")
+        robot.attach_primitive(SayHello(robot), "say_hello")
