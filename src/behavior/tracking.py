@@ -6,16 +6,24 @@ import pypot.primitive
 
 class TrackingBehave(pypot.primitive.LoopPrimitive):
 
+    #coord donnees par camera
     coordx=0
     coordy=0
+    #angle actuel
     presenty=0
     presentz=0
-    resx=640
-    resy=480
+    #angle but
+    goaly=0
+    goalz=0
+    #camera
+    resx=640.0
+    resy=480.0
+    anglex=160.0
+    angley=160.0
     middlex=resx/2
     middley=resy/2
-    seuilx=30
-    seuily=25
+    seuilx=10
+    seuily=10
     
     def __init__(self, robot, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot,freq)       
@@ -37,37 +45,49 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
 
     def teardown(self):
         robot = self.robot
-        self.robot.normal_behave.start()
+        #self.robot.normal_behave.start()
 
     def update(self):
         #traitement necessaire de coordx et coordy?
+        goalz=(self.anglex/self.resx)*(self.middlex-self.coordx)+self.robot.head_z.present_position
+        goaly=(self.angley/self.resy)*(self.coordy-self.middley)+self.robot.head_y.present_position
 
-        self.presenty = self.robot.head_y.present_position
-        self.presentz = self.robot.head_z.present_position
+        # self.robot.head_z.goto_position(goalz, 3, wait=False)
+        # self.robot.head_y.goto_position(goaly, 3, wait=True)
+        self.robot.head_z.moving_speed=30
+        self.robot.head_y.moving_speed=30
+        self.robot.head_z.goal_position=goalz
+        self.robot.head_y.goal_position=goaly
 
-        #si le visage est trop a gauche
-        if (self.middlex-self.coordx)>self.seuilx :
-            #si visage pas trop tourne
-            if (self.presentz>-90) :
-                #bouger de 10d gauche
-                self.robot.head_z.goto_position(self.presentz+10, 1, wait=False)
-        #else si trop a droite
-        elif (self.coordx-self.middlex)>self.seuilx :
-            #si visage pas trop tourne
-            if (self.presentz<90) :
-                #bouger de 10d droite
-                self.robot.head_z.goto_position(self.presentz-10, 1, wait=False)
 
-        #si trop haut
-        if (self.middley-self.coordy)>self.seuily :
-            #si visage pas trop tourne
-            if (self.presenty>-35) :
-                #bouger de 10d haut
-                self.robot.head_y.goto_position(self.presenty-10, 1, wait=False)
-        #else si trop bas
-        elif (self.coordy-self.middley)>self.seuily :
-            #si visage pas trop tourne
-            if (self.presenty<5) :
-                #bouger de 10d bas
-                self.robot.head_y.goto_position(self.presenty+10, 1, wait=False)
+        #time.sleep(2)
+
+        #self.presenty = self.robot.head_y.present_position
+        #self.presentz = self.robot.head_z.present_position
+
+        # #si le visage est trop a gauche
+        # if (self.middlex-self.coordx)>self.seuilx :
+        #     #si visage pas trop tourne
+        #     if (self.presentz>-70) :
+        #         #bouger de 10d gauche
+        #         self.robot.head_z.goto_position(self.presentz+10, 1, wait=True)
+        # #else si trop a droite
+        # elif (self.coordx-self.middlex)>self.seuilx :
+        #     #si visage pas trop tourne
+        #     if (self.presentz<70) :
+        #         #bouger de 10d droite
+        #         self.robot.head_z.goto_position(self.presentz-10, 1, wait=True)
+
+        # #si trop haut
+        # if (self.middley-self.coordy)>self.seuily :
+        #     #si visage pas trop tourne
+        #     if (self.presenty>-10) :
+        #         #bouger de 10d haut
+        #         self.robot.head_y.goto_position(self.presenty-10, 1, wait=True)
+        # #else si trop bas
+        # elif (self.coordy-self.middley)>self.seuily :
+        #     #si visage pas trop tourne
+        #     if (self.presenty<20) :
+        #         #bouger de 10d bas
+        #         self.robot.head_y.goto_position(self.presenty+10, 1, wait=True)
         
