@@ -37,6 +37,8 @@ from behavior.talkFour import TalkFourBehave
 from behavior.tracking import TrackingBehave
 from behavior.sad import SadBehave
 
+from vision.camera import  Camera
+
 class Cherry():
 
     def __init__(self, simulator=None):
@@ -54,6 +56,10 @@ class Cherry():
 
             for m in self.robot.torso:
                 m.compliant = False
+				
+        imagePath = "../temp"
+        cascadePath = "C:\Program Files (x86)\opencv\sources\data\lbpcascades\lbpcascade_frontalface.xml"
+        self.camera = Camera(imagePath, cascadePath)
 
 
 

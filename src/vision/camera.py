@@ -4,30 +4,27 @@ import cv2
 import numpy as np
 import utils
 
-import random
+import random as rand	
 from scipy import ndimage  #seulement parce que imread de OpenCV retourne "None" au lieu d'une liste
 
 
 
 class Camera:
 
-   is_somebody=0
+    is_somebody=0
    
-   coor_X = 0
-   coor_Y = 0
-   def __init__(self, imagePath, cascadePath):
-          	
-          
-          self._cascadePath= cascadePath
-          self._imagePath=imagePath
-          
-               
+    coor_X = 0
+    coor_Y = 0
+	
+    def __init__(self, imagePath, cascadePath):
+        self._cascadePath= cascadePath
+        self._imagePath=imagePath
+        self._name = "unknown"
+        self._isSomebody = False
+        self._xPosition = 0
+        self._yPosition = 0
    
-   def _runCaptureLoop(self):
-        
-        if len(sys.argv) < 3:
-             print "USAGE: Face_Recognition.py </path/to/images> <path/to/cascadefile>"
-             sys.exit()
+    def _runCaptureLoop(self):
          
         print "  cliquer sur 'Echap' pour quitter"
         print "  cliquer sur 'a' pour ajouter une image a la base de donnees"
@@ -68,6 +65,8 @@ class Camera:
         images,labels,names = utils.retrain(imgdir,model,faceSize)
         print "Nouvel etat:",len(images),"images",len(names),"personnes"
         while True:
+		
+             self._isSomebody = False
              	  
              ret, img = cam.read()
              			 
@@ -94,8 +93,13 @@ class Camera:
                 
                     [p_label, p_confidence] = model.predict(np.asarray(roi))
                     name="unknown"
-                    if p_label !=-1 : name = names[p_label]
+                    if p_label !=-1 :
+						name = names[p_label]
+						self._isSomebody = True
                     cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+                    self._name = name
+                    self._xPosition = xCentre1
+                    self._yPosition = yCentre1
                  break # use only 1st detected
              cv2.imshow('Face Recognition For Poppy', img)
              k = cv2.waitKey(5) & 0xFF
@@ -120,7 +124,7 @@ class Camera:
         
              # on met a jour le modele
              if (k == 116): # 't' pressed
-                 images,labels,names = retrain(imgdir,model,faceSize)
+                 images,labels,names = utils.retrain(imgdir,model,faceSize)
                  print "Nouvel etat:",len(images),"images",len(names),"personnes"
    
 	
