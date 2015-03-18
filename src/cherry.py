@@ -37,7 +37,9 @@ from behavior.talkFour import TalkFourBehave
 from behavior.tracking import TrackingBehave
 from behavior.sad import SadBehave
 
-from vision.camera import  Camera
+from vision.camera import Camera
+
+from vision.runLook import RunLook
 
 class Cherry():
 
@@ -104,3 +106,4 @@ class Cherry():
         robot.attach_primitive(Speak(robot), "speak")
         robot.attach_primitive(SayHello(robot), "say_hello")
         robot.attach_primitive(SadBehave(robot), "sad_behave")
+        robot.attach_primitive(RunLook(robot, self.camera, 50), "run_look")
