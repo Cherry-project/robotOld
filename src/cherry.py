@@ -9,6 +9,7 @@ from poppy.creatures import PoppyHumanoid
 
 from textToSpeech.speak import Speak
 from textToSpeech.say_hello import SayHello
+from textToSpeech.speech import Speech
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
@@ -107,3 +108,4 @@ class Cherry():
         robot.attach_primitive(SayHello(robot), "say_hello")
         robot.attach_primitive(SadBehave(robot), "sad_behave")
         robot.attach_primitive(RunLook(robot, self.camera, 50), "run_look")
+        robot.attach_primitive(Speech(robot), "speech")
