@@ -33,30 +33,35 @@ class Camera:
         except:
             pass # le chemin existe deja
 
-        self.cam = cv2.VideoCapture(0)       
-        if ( not self.cam.isOpened() ):
+        
+        self._cam = cv2.VideoCapture(0)       
+        if ( not self._cam.isOpened() ):
            print "camera non detectee!"
            sys.exit()      
         print "camera detectee!."
-
-
+		
         self._cascade = cv2.CascadeClassifier(self._cascadePath)
-        if ( cascade.empty() ):
+        if ( self._cascade.empty() ):
             print "aucune cascade precisee!"
             sys.exit()
         print "cascade ok"
 
 
 
+
+
     def runCapture(self):
+		
         imgdir = self._imagePath
+        cam = self._cam
+        cascade = self._cascade
          
         faceSize= (90, 90)
         model= cv2.createLBPHFaceRecognizer(threshold=70.0) 
         
                 
         images,labels,names = utils.retrain(imgdir,model,faceSize)
-        print "Nouvel etat:",len(images),"images",len(names),"personnes"
+        #print "Nouvel etat:",len(images),"images",len(names),"personnes"
         
         self.isSomebody = False
                   
@@ -70,30 +75,32 @@ class Camera:
 
         # ne prend que la region de l'image qui nous interesse (le visage)
         roi = None
-
-        for x, y, w, h in rects:
+        if len(rects)>0:
+            (x, y, w, h) = rects[0]
             # crop & resize it 
             roi = cv2.resize( gray[y:y+h, x:x+h], faceSize )
             #calcule les coordonnees du rectangle et les affiche
             xCentre1=(2*x+w)/2
-        yCentre1=(2*y+h)/2  
-        xCentre=str(xCentre1)
-        yCentre=str(yCentre1)
-        centre="("+xCentre+":"+yCentre+")"
+            yCentre1=(2*y+h)/2  
+            xCentre=str(xCentre1)
+            yCentre=str(yCentre1)
+            centre="("+xCentre+":"+yCentre+")"
 
-        cv2.rectangle(img, (x,y),(x+w,y+h), (0,255,0),2)
+            cv2.rectangle(img, (x,y),(x+w,y+h), (0,255,0),2)
 
-        if len(images)>0:
+            if len(images)>0:
                 
-            [p_label, p_confidence] = model.predict(np.asarray(roi))
-            name="unknown"
-            if p_label !=-1 :
-                name = names[p_label]
-                self._isSomebody = True
-            cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
-            self._name = name
-            self._xPosition = xCentre1
-            self._yPosition = yCentre1
+                [p_label, p_confidence] = model.predict(np.asarray(roi))
+                name="unknown"
+                if p_label !=-1 :
+                    name = names[p_label]
+                    self.isSomebody = True
+                cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+                self.name = name
+                self.xPosition = xCentre1
+                self.yPosition = yCentre1
+
+        #cv2.imshow('Face Recognition For Poppy', img)
 
 
     # def _runCaptureLoop(self):

@@ -60,7 +60,7 @@ class Cherry():
             for m in self.robot.torso:
                 m.compliant = False
 				
-        imagePath = "../temp"
+        imagePath = "../utils/temp"
         cascadePath = "C:\Program Files (x86)\opencv\sources\data\lbpcascades\lbpcascade_frontalface.xml"
         self.camera = Camera(imagePath, cascadePath)
 

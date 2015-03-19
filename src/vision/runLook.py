@@ -21,18 +21,11 @@ class RunLook(pypot.primitive.LoopPrimitive):
 
 
     def setup(self):
-        print "debut setup camera"
-        print "heuuuuu"
-        print "et la ?"
-        print "non plus ?"
         self.camera.setup()
-        print "fin setup camera"
 
 
     def update(self):
-        print "debut update"
-        self.camera.RunLook()
-        print "fin update"
+        self.camera.runCapture()
 
 
     def teardown(self):
