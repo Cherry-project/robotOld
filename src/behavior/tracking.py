@@ -19,6 +19,8 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
     angley=160.0
     middlex=resx/2
     middley=resy/2
+
+    counter=0
     
     
     def __init__(self, robot, camera, freq):
@@ -42,6 +44,7 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
 
         if (camera.isSomebody==True) :
 
+            self.counter=0
             #traitement necessaire de coordx et coordy?
             goalz=(self.anglex/self.resx)*(self.middlex-camera.xPosition)+self.robot.head_z.present_position
             goaly=(self.angley/self.resy)*(camera.yPosition-self.middley)+self.robot.head_y.present_position
@@ -52,11 +55,14 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
             self.robot.head_y.moving_speed=30
             self.robot.head_z.goal_position=goalz
             self.robot.head_y.goal_position=goaly
+            time.sleep(0.5)
         else :
-            self.robot.head_z.moving_speed=30
-            self.robot.head_y.moving_speed=30
-            self.robot.head_z.goal_position=0
-            self.robot.head_y.goal_position=0
+            self.counter+=1
+            if (self.counter>6) :
+                self.robot.head_z.moving_speed=30
+                self.robot.head_y.moving_speed=30
+                self.robot.head_z.goal_position=0
+                self.robot.head_y.goal_position=0
 
 
         
