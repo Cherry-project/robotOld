@@ -44,6 +44,26 @@ from vision.camera import Camera
 
 from vision.runLook import RunLook
 
+from screen.eyes import Eyes
+from screen.get_fond import Get_fond
+from screen.get_reaction import Get_reaction
+from screen.basic import Basic  #A SUPPRIMER QUAND TESTS FINIS
+
+from screen.blink import Blink
+from screen.surprise import Surprise
+from screen.sleepy import Sleepy
+from screen.happy import Happy
+from screen.sad import Sad
+
+from screen.neutral2sleep import Neutral2sleep
+from screen.sleep2neutral import Sleep2neutral
+from screen.neutral2surprise import Neutral2surprise
+from screen.surprise2neutral import Surprise2neutral
+from screen.neutral2happy import Neutral2happy
+from screen.happy2neutral import Happy2neutral
+from screen.neutral2sad import Neutral2sad
+from screen.sad2neutral import Sad2neutral
+
 class Cherry():
 
     def __init__(self, simulator=None):
@@ -112,3 +132,23 @@ class Cherry():
         robot.attach_primitive(SadBehave(robot), "sad_behave")
         robot.attach_primitive(RunLook(robot, self.camera, 50), "run_look") 
         robot.attach_primitive(Speech(robot), "speech")
+
+        robot.attach_primitive(Eyes(robot), "eyes")
+        robot.attach_primitive(Get_reaction(robot), "get_reaction")
+        robot.attach_primitive(Get_fond(robot), "get_fond")
+        robot.attach_primitive(Basic(robot), "basic")
+        robot.attach_primitive(Blink(robot), "blink")
+        robot.attach_primitive(Neutral2sleep(robot), "neutral2sleep")
+        robot.attach_primitive(Sleep2neutral(robot), "sleep2neutral")
+        robot.attach_primitive(Neutral2surprise(robot), "neutral2surprise")
+        robot.attach_primitive(Surprise2neutral(robot), "surprise2neutral")
+        robot.attach_primitive(Surprise(robot), "surprise")
+        robot.attach_primitive(Sleepy(robot), "sleepy")
+        robot.attach_primitive(Happy(robot), "happy")
+        robot.attach_primitive(Neutral2happy(robot), "neutral2happy")
+        robot.attach_primitive(Happy2neutral(robot), "happy2neutral")
+        robot.attach_primitive(Neutral2sad(robot), "neutral2sad")
+        robot.attach_primitive(Sad2neutral(robot), "sad2neutral")
+        robot.attach_primitive(Sad(robot), "sad")
+
+
