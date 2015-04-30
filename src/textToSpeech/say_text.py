@@ -7,23 +7,24 @@ import time
 import pypot.primitive
 import pypot.robot
 from pypot.primitive.move import MoveRecorder, Move, MovePlayer
+from re
 
 
 from speak import Speak
 
-texts = [
-"""﻿Bonjour, je m'appelle Cherry. Je suis là pour t'aider pendant ton séjour à l'hopital.""",
+# texts = [
+# """Bonjour, je m'appelle Cherry. Je suis là pour t'aider pendant ton séjour à l'hopital.""",
 
-"""Ici c'est ta chambre,c'est ici que tu vas te reposer et dormir. 
-Ta famille pourra te rendre visite pendant la journée, ou même dormir avec toi le soir.""",
+# """Ici c'est ta chambre,c'est ici que tu vas te reposer et dormir.
+# Ta famille pourra te rendre visite pendant la journée, ou même dormir avec toi le soir.""",
 
-"""Si tu as besoin de quelque chose, il y a une sonnette à côté de ton lit.
-Tu peux appuyer dessus pour appeler les infirmières.
-Elle sont là pour t'aider et assister les médecins.""",
+# """Si tu as besoin de quelque chose, il y a une sonnette à côté de ton lit.
+# Tu peux appuyer dessus pour appeler les infirmières.
+# Elle sont là pour t'aider et assister les médecins.""",
 
-"""Pour t'occuper, tu peux utiliser l'ordinateur qui est dans ta chambre, ou jouer avec moi.""",
+# """Pour t'occuper, tu peux utiliser l'ordinateur qui est dans ta chambre, ou jouer avec moi.""",
 
-"""Si tu n'as pas compris quelque chose ou que tu as des questions, surtout n'hésites pas à demander aux gens de l'hopital."""]
+# """Si tu n'as pas compris quelque chose ou que tu as des questions, surtout n'hésites pas à demander aux gens de l'hopital."""]
 
 class SayText(pypot.primitive.Primitive):
 
@@ -31,33 +32,14 @@ class SayText(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._speak = Speak(robot)
-        
-        
+
+
 
     def start(self, textfile):
-        # self._text = textfile
-        # print textfile
-        # file = open(self._text, 'r')
+       
+        data = open(textfile, 'r')
 
-        # for line in file :
-            
-        #     # print "ligne!"
-        #     # phrase = line.split('.')
-        #     # for item in phrase :
-        #     #     print item
-
-
-
-        #     print '_______________________________________________________________________________________'
-        #     print line
-        #     print '_______________________________________________________________________________________'
-
-        #     self.robot.speak.start(line)
-
-        
-        # text = file.readlines()
-
-        # print text
+        texts = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', data.read())
 
         for text in texts:
             self.robot.speak.start(text)
@@ -66,5 +48,5 @@ class SayText(pypot.primitive.Primitive):
     def run(self):
 
         print "run"
-        
-       
+
+
