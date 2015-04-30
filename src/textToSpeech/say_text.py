@@ -39,7 +39,7 @@ class SayText(pypot.primitive.Primitive):
        
         data = open(textfile, 'r')
 
-        texts = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', data.read())
+        texts = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s', data.read())
 
         for text in texts:
             self.robot.speak.start(text)
