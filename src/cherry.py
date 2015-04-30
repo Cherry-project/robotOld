@@ -11,7 +11,7 @@ from textToSpeech.speak import Speak
 from textToSpeech.say_hello import SayHello
 from textToSpeech.speech import Speech
 from textToSpeech.say_text import SayText
-from textToSpeech.say_hyper import SayHyper
+#from textToSpeech.say_hyper import SayHyper
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
 from behavior.yes import YesBehave
@@ -44,25 +44,25 @@ from vision.camera import Camera
 
 from vision.runLook import RunLook
 
-from screen.eyes import Eyes
-from screen.get_fond import Get_fond
-from screen.get_reaction import Get_reaction
-from screen.basic import Basic  #A SUPPRIMER QUAND TESTS FINIS
+# from screen.eyes import Eyes
+# from screen.get_fond import Get_fond
+# from screen.get_reaction import Get_reaction
+# from screen.basic import Basic  #A SUPPRIMER QUAND TESTS FINIS
 
-from screen.blink import Blink
-from screen.surprise import Surprise
-from screen.sleepy import Sleepy
-from screen.happy import Happy
-from screen.sad import Sad
+# from screen.blink import Blink
+# from screen.surprise import Surprise
+# from screen.sleepy import Sleepy
+# from screen.happy import Happy
+# from screen.sad import Sad
 
-from screen.neutral2sleep import Neutral2sleep
-from screen.sleep2neutral import Sleep2neutral
-from screen.neutral2surprise import Neutral2surprise
-from screen.surprise2neutral import Surprise2neutral
-from screen.neutral2happy import Neutral2happy
-from screen.happy2neutral import Happy2neutral
-from screen.neutral2sad import Neutral2sad
-from screen.sad2neutral import Sad2neutral
+# from screen.neutral2sleep import Neutral2sleep
+# from screen.sleep2neutral import Sleep2neutral
+# from screen.neutral2surprise import Neutral2surprise
+# from screen.surprise2neutral import Surprise2neutral
+# from screen.neutral2happy import Neutral2happy
+# from screen.happy2neutral import Happy2neutral
+# from screen.neutral2sad import Neutral2sad
+# from screen.sad2neutral import Sad2neutral
 
 class Cherry():
 
@@ -82,8 +82,8 @@ class Cherry():
             for m in self.robot.torso:
                 m.compliant = False
 				
-        imagePath = "../utils/temp"
-        cascadePath = "C:\Program Files (x86)\opencv\sources\data\lbpcascades\lbpcascade_frontalface.xml"
+        imagePath = "../utils/img"
+        cascadePath = "../utils/opencv/data/lbpcascades/lbpcascade_frontalface.xml"
         self.camera = Camera(imagePath, cascadePath)
 
 
@@ -125,7 +125,7 @@ class Cherry():
         robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
         robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")
         robot.attach_primitive(TalkFourBehave(robot), "talk_four_behave")
-        robot.attach_primitive(TrackingBehave(robot,50), "tracking_behave")
+        robot.attach_primitive(TrackingBehave(robot, self.camera, 50), "tracking_behave")
         robot.attach_primitive(Speak(robot), "speak")
         robot.attach_primitive(SayHello(robot), "say_hello")
         robot.attach_primitive(SayText(robot), "say_text")
@@ -133,22 +133,22 @@ class Cherry():
         robot.attach_primitive(RunLook(robot, self.camera, 50), "run_look") 
         robot.attach_primitive(Speech(robot), "speech")
 
-        robot.attach_primitive(Eyes(robot), "eyes")
-        robot.attach_primitive(Get_reaction(robot), "get_reaction")
-        robot.attach_primitive(Get_fond(robot), "get_fond")
-        robot.attach_primitive(Basic(robot), "basic")
-        robot.attach_primitive(Blink(robot), "blink")
-        robot.attach_primitive(Neutral2sleep(robot), "neutral2sleep")
-        robot.attach_primitive(Sleep2neutral(robot), "sleep2neutral")
-        robot.attach_primitive(Neutral2surprise(robot), "neutral2surprise")
-        robot.attach_primitive(Surprise2neutral(robot), "surprise2neutral")
-        robot.attach_primitive(Surprise(robot), "surprise")
-        robot.attach_primitive(Sleepy(robot), "sleepy")
-        robot.attach_primitive(Happy(robot), "happy")
-        robot.attach_primitive(Neutral2happy(robot), "neutral2happy")
-        robot.attach_primitive(Happy2neutral(robot), "happy2neutral")
-        robot.attach_primitive(Neutral2sad(robot), "neutral2sad")
-        robot.attach_primitive(Sad2neutral(robot), "sad2neutral")
-        robot.attach_primitive(Sad(robot), "sad")
+        # robot.attach_primitive(Eyes(robot), "eyes")
+        # robot.attach_primitive(Get_reaction(robot), "get_reaction")
+        # robot.attach_primitive(Get_fond(robot), "get_fond")
+        # robot.attach_primitive(Basic(robot), "basic")
+        # robot.attach_primitive(Blink(robot), "blink")
+        # robot.attach_primitive(Neutral2sleep(robot), "neutral2sleep")
+        # robot.attach_primitive(Sleep2neutral(robot), "sleep2neutral")
+        # robot.attach_primitive(Neutral2surprise(robot), "neutral2surprise")
+        # robot.attach_primitive(Surprise2neutral(robot), "surprise2neutral")
+        # robot.attach_primitive(Surprise(robot), "surprise")
+        # robot.attach_primitive(Sleepy(robot), "sleepy")
+        # robot.attach_primitive(Happy(robot), "happy")
+        # robot.attach_primitive(Neutral2happy(robot), "neutral2happy")
+        # robot.attach_primitive(Happy2neutral(robot), "happy2neutral")
+        # robot.attach_primitive(Neutral2sad(robot), "neutral2sad")
+        # robot.attach_primitive(Sad2neutral(robot), "sad2neutral")
+        # robot.attach_primitive(Sad(robot), "sad")
 
 

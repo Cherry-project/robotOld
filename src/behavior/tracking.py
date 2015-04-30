@@ -42,6 +42,8 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
 
     def update(self):
 
+        camera = self.camera
+
         if (camera.isSomebody==True) :
 
             self.counter=0

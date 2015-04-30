@@ -7,7 +7,7 @@ import time
 import pypot.primitive
 import pypot.robot
 from pypot.primitive.move import MoveRecorder, Move, MovePlayer
-from re
+import re
 
 
 from speak import Speak
