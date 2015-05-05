@@ -13,7 +13,7 @@ def main():
    imagePath=sys.argv[1]
    cascadePath=sys.argv[2]
    camera = Camera(imagePath, cascadePath)
-   camera.runLoop2()
+   camera._runCaptureLoop()
   
    
 

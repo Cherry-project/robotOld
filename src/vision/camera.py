@@ -171,9 +171,9 @@ class Camera:
                          
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             #a voir si c'est necessaire
-            gray = cv2.equalizeHist(gray)
+            #gray = cv2.equalizeHist(gray)
             # dectection de visage
-            rects = cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5, minSize=(40, 40), flags=cv2.cv.CV_HAAR_SCALE_IMAGE) #flags = cv2.CASCADE_SCALE_IMAGE     
+            rects = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30), flags=cv2.cv.CV_HAAR_SCALE_IMAGE) #flags = cv2.CASCADE_SCALE_IMAGE     
         
             # ne prend que la region de l'image qui nous interesse (le visage)
             roi = None
@@ -280,9 +280,9 @@ class Camera:
                          
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             #a voir si c'est necessaire
-            gray = cv2.equalizeHist(gray)
+            #gray = cv2.equalizeHist(gray)
             # dectection de visage
-            rects = cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5, minSize=(40, 40), flags=cv2.cv.CV_HAAR_SCALE_IMAGE) #flags = cv2.CASCADE_SCALE_IMAGE     
+            rects = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30), flags=cv2.cv.CV_HAAR_SCALE_IMAGE) #flags = cv2.CASCADE_SCALE_IMAGE     
         
             # ne prend que la region de l'image qui nous interesse (le visage)
             roi = None
@@ -304,10 +304,8 @@ class Camera:
                     [p_label, p_confidence] = model.predict(np.asarray(roi))
                     name="unknown"
                     if p_label !=-1 :
-                        name = names[p_label]
+                        name = names[p_label]                    
 
-
-                    
                     cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
                     self.name = name
                     self.xPosition = xCentre1
@@ -316,6 +314,10 @@ class Camera:
 
             self.compteur += 1
             cv2.imshow('Face Recognition For Poppy', img)
+
+
+
+                    
             k = cv2.waitKey(5) & 0xFF
         
             # quitter avec Echap

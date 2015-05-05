@@ -17,7 +17,7 @@ class Speech(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._text = "Bonjour ! Je m'appelle Cherry. Je suis là pour t'aider durant ton séjour."
-        self._move = "../src/moveRecorded/speech.move"
+        self._move = "../src/moveRecorded/speech.move"  
 
     def run(self):
 
