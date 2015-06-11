@@ -70,31 +70,31 @@ class Dictee(pypot.primitive.Primitive):
         print (text1)
         print "appuyer sur o si le patient répond bien, sur n si il se trompe, puis sur entrée"
 
-        while True :
-            rep = raw_input()
-            #if appuie sur n
-            if rep == "n" :
+        # while True :
+        #     rep = raw_input()
+        #     #if appuie sur n
+        #     if rep == "n" :
 
-                with open(self._moven) as f :
+        #         with open(self._moven) as f :
 
-                    m = Move.load(f)
+        #             m = Move.load(f)
     
-                move_player = MovePlayer(self.robot, m)
-                move_player.start()
+        #         move_player = MovePlayer(self.robot, m)
+        #         move_player.start()
         
-                time.sleep(1.5)
+        #         time.sleep(1.5)
 
-                self._speak.start("Non, ce n'est pas ça. Essaye encore!")
+        #         self._speak.start("Non, ce n'est pas ça. Essaye encore!")
 
-            elif rep == "o" :
-                with open(self._moveo) as f :
+        #     elif rep == "o" :
+        #         with open(self._moveo) as f :
 
-                    m = Move.load(f)
+        #             m = Move.load(f)
     
-                move_player = MovePlayer(self.robot, m)
-                move_player.start()
+        #         move_player = MovePlayer(self.robot, m)
+        #         move_player.start()
         
-                time.sleep(1.5)
+        #         time.sleep(1.5)
 
-                self._speak.start("Bravo! Tu t'y connais en orthographe!")
-                break
+        #         self._speak.start("Bravo! Tu t'y connais en orthographe!")
+        #         break

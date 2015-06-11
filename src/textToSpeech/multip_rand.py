@@ -17,7 +17,7 @@ class MultipRand(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._speak = Speak(robot)
-        self._move = "../src/moveRecorded/hello.move"
+        self._move = "../src/moveRecorded/multip.move"
         self._moveo = "../src/moveRecorded/hello.move"
         self._moven = "../src/moveRecorded/hello.move"
 
@@ -79,6 +79,9 @@ class MultipRand(pypot.primitive.Primitive):
             text2 = "un"
 
 
+        print (sol)
+        print "Lancer vrai1 si le patient répond bien, faux il se trompe."
+
         text = "Dis moi, combien font " + text1 + "fois " + text2 + "?"
         
         with open(self._move) as f :
@@ -88,37 +91,37 @@ class MultipRand(pypot.primitive.Primitive):
         move_player = MovePlayer(self.robot, m)
         move_player.start()
         
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         self._speak.start(text)
-        print (sol)
-        print "appuyer sur o si le patient répond bien, sur n si il se trompe, puis sur entrée"
-
-        while True :
-            rep = raw_input()
-            #if appuie sur n
-            if rep == "n" :
-
-                with open(self._moven) as f :
-
-                    m = Move.load(f)
-    
-                move_player = MovePlayer(self.robot, m)
-                move_player.start()
         
-                time.sleep(1.5)
+        # while True :
+        #     rep = raw_input()
+        #     #rep=input("réponse :")
 
-                self._speak.start("Non, ce n'est pas ça. Essaye encore!")
+        #     #if appuie sur n
+        #     if rep == "n" :
 
-            elif rep == "o" :
-                with open(self._moveo) as f :
+        #         with open(self._moven) as f :
 
-                    m = Move.load(f)
+        #             m = Move.load(f)
     
-                move_player = MovePlayer(self.robot, m)
-                move_player.start()
+        #         move_player = MovePlayer(self.robot, m)
+        #         move_player.start()
         
-                time.sleep(1.5)
+        #         time.sleep(1.5)
 
-                self._speak.start("Bravo! Quel génie mathématique!")
-                break
+        #         self._speak.start("Non, ce n'est pas ça. Essaye encore!")
+
+        #     elif rep == "o" :
+        #         with open(self._moveo) as f :
+
+        #             m = Move.load(f)
+    
+        #         move_player = MovePlayer(self.robot, m)
+        #         move_player.start()
+        
+        #         time.sleep(1.5)
+
+        #         self._speak.start("Bravo! Quel génie mathématique!")
+        #         break
