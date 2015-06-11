@@ -18,8 +18,6 @@ class Dictee(pypot.primitive.Primitive):
 
         self._speak = Speak(robot)
         self._move = "../src/moveRecorded/hello.move"
-        self._moveo = "../src/moveRecorded/hello.move"
-        self._moven = "../src/moveRecorded/hello.move"
 
     def run(self):
 
@@ -68,7 +66,7 @@ class Dictee(pypot.primitive.Primitive):
 
         self._speak.start(text)
         print (text1)
-        print "appuyer sur o si le patient répond bien, sur n si il se trompe, puis sur entrée"
+        print "alancer vrai3 si le patient répond bien, faux si il se trompe."
 
         # while True :
         #     rep = raw_input()

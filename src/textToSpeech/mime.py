@@ -51,6 +51,9 @@ class Mime(pypot.primitive.Primitive):
             text1 = "singe"
             mouvement = self._movem1
 
+        print (text1)
+        print "lancer vrai4 si le patient répond bien, faux si il se trompe."
+
 
         text = "Devine ce que je mime."
         
@@ -64,34 +67,33 @@ class Mime(pypot.primitive.Primitive):
         time.sleep(1.5)
 
         self._speak.start(text)
-        print (text1)
-        print "appuyer sur o si le patient répond bien, sur n si il se trompe, puis sur entrée"
-
-        while True :
-            rep = raw_input()
-            #if appuie sur n
-            if rep == "n" :
-
-                with open(self._moven) as f :
-
-                    m = Move.load(f)
-    
-                move_player = MovePlayer(self.robot, m)
-                move_player.start()
         
-                time.sleep(1.5)
 
-                self._speak.start("Non, ce n'est pas ça. Essaye encore!")
+        # while True :
+        #     rep = raw_input()
+        #     #if appuie sur n
+        #     if rep == "n" :
 
-            elif rep == "o" :
-                with open(self._moveo) as f :
+        #         with open(self._moven) as f :
 
-                    m = Move.load(f)
+        #             m = Move.load(f)
     
-                move_player = MovePlayer(self.robot, m)
-                move_player.start()
+        #         move_player = MovePlayer(self.robot, m)
+        #         move_player.start()
         
-                time.sleep(1.5)
+        #         time.sleep(1.5)
 
-                self._speak.start("Bravo! Tu as vu comme je suis bon acteur?")
-                break
+        #         self._speak.start("Non, ce n'est pas ça. Essaye encore!")
+
+        #     elif rep == "o" :
+        #         with open(self._moveo) as f :
+
+        #             m = Move.load(f)
+    
+        #         move_player = MovePlayer(self.robot, m)
+        #         move_player.start()
+        
+        #         time.sleep(1.5)
+
+        #         self._speak.start("Bravo! Tu as vu comme je suis bon acteur?")
+        #         break

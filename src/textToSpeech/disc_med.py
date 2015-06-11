@@ -19,9 +19,19 @@ class DiscMed(pypot.primitive.Primitive):
 
         self._speak = Speak(robot)
         self._saytext = SayText(robot)
-        
+        self._move = "../src/moveRecorded/hello.move"
 
     def start(self):
+
+        with open(self._move) as f :
+
+            m = Move.load(f)
+    
+        move_player = MovePlayer(self.robot, m)
+        move_player.start()
+        
+        time.sleep(1.5)
+
         # print "1"
         # phrase="Je vais te parler de l’Hyperthyroïdie. Ne t’inquiète pas, ce n’est pas très compliqué ! Je vais t’expliquer ce que c’est, pourquoi ça arrive et comment les médecins le soignent."
         # self._speak.start(phrase)

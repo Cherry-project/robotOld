@@ -18,8 +18,6 @@ class MultipRand(pypot.primitive.Primitive):
 
         self._speak = Speak(robot)
         self._move = "../src/moveRecorded/multip.move"
-        self._moveo = "../src/moveRecorded/hello.move"
-        self._moven = "../src/moveRecorded/hello.move"
 
     def run(self):
 
