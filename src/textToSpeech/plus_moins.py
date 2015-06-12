@@ -17,7 +17,7 @@ class PlusMoins(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._speak = Speak(robot)
-        self._move = "../src/moveRecorded/hello.move"
+        self._move = "../src/moveRecorded/plus_moins.move"
 
     def run(self):
 
@@ -38,7 +38,7 @@ class PlusMoins(pypot.primitive.Primitive):
         move_player = MovePlayer(self.robot, m)
         move_player.start()
         
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         self._speak.start("Essaye de deviner à quel nombre je pense. Il est compris entre 1 et 100")
 

@@ -17,7 +17,7 @@ class Dictee(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._speak = Speak(robot)
-        self._move = "../src/moveRecorded/hello.move"
+        self._move = "../src/moveRecorded/dictee.move"
 
     def run(self):
 
@@ -52,6 +52,9 @@ class Dictee(pypot.primitive.Primitive):
         else:
             text1 = "Cherry"
 
+        print (text1)
+        print "alancer vrai3 si le patient répond bien, faux si il se trompe."
+
 
         text = "Dis moi comment on écrit " + text1 + "."
         
@@ -62,11 +65,10 @@ class Dictee(pypot.primitive.Primitive):
         move_player = MovePlayer(self.robot, m)
         move_player.start()
         
-        time.sleep(1.5)
+        time.sleep(1)
 
         self._speak.start(text)
-        print (text1)
-        print "alancer vrai3 si le patient répond bien, faux si il se trompe."
+        
 
         # while True :
         #     rep = raw_input()

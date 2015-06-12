@@ -17,13 +17,13 @@ class Mime(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._speak = Speak(robot)
-        self._move = "../src/moveRecorded/hello.move"
-        self._movem1 = "../src/moveRecorded/hello.move"
-        self._movem2 = "../src/moveRecorded/hello.move"
-        self._movem3 = "../src/moveRecorded/hello.move"
-        self._movem4 = "../src/moveRecorded/hello.move"
-        self._moveo = "../src/moveRecorded/hello.move"
-        self._moven = "../src/moveRecorded/hello.move"
+        self._move = "../src/moveRecorded/mime.move"
+        self._movem1 = "../src/moveRecorded/singe.move"
+        self._movem2 = "../src/moveRecorded/poulet.move"
+        self._movem3 = "../src/moveRecorded/nager.move"
+        self._movem4 = "../src/moveRecorded/manger.move"
+        #self._moveo = "../src/moveRecorded/faux.move"
+        #self._moven = "../src/moveRecorded/vrai4.move"
 
     def run(self):
 
@@ -39,7 +39,7 @@ class Mime(pypot.primitive.Primitive):
             text1 = "singe"
             mouvement = self._movem1
         elif num1 == 2 :
-            text1 = "elephant"
+            text1 = "poulet"
             mouvement = self._movem2
         elif num1 == 3 :
             text1 = "nager"
@@ -57,16 +57,25 @@ class Mime(pypot.primitive.Primitive):
 
         text = "Devine ce que je mime."
         
-        with open(mouvement) as f :
+        with open(self._move) as f :
 
             m = Move.load(f)
     
         move_player = MovePlayer(self.robot, m)
         move_player.start()
         
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         self._speak.start(text)
+
+        time.sleep(3)
+
+        with open(mouvement) as f :
+
+            m = Move.load(f)
+    
+        move_player = MovePlayer(self.robot, m)
+        move_player.start()
         
 
         # while True :

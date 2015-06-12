@@ -11,7 +11,7 @@ from pypot.primitive.move import MoveRecorder, Move, MovePlayer
 
 from speak import Speak
 
-class Vrai1(pypot.primitive.Primitive):
+class Vrai4(pypot.primitive.Primitive):
 
     def __init__(self, robot):
         pypot.primitive.Primitive.__init__(self, robot)

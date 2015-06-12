@@ -17,7 +17,7 @@ class Charade(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._speak = Speak(robot)
-        self._move = "../src/moveRecorded/hello.move"
+        self._move = "../src/moveRecorded/charade.move"
 
     def run(self):
 

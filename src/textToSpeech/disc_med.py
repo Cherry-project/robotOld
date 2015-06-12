@@ -19,7 +19,8 @@ class DiscMed(pypot.primitive.Primitive):
 
         self._speak = Speak(robot)
         self._saytext = SayText(robot)
-        self._move = "../src/moveRecorded/hello.move"
+        self._move = "../src/moveRecorded/arrivee.move"
+        self._move2 = "../src/moveRecorded/arrive_tete.move"
 
     def start(self):
 
@@ -28,8 +29,16 @@ class DiscMed(pypot.primitive.Primitive):
             m = Move.load(f)
     
         move_player = MovePlayer(self.robot, m)
+
+        with open(self._move2) as f :
+
+            m = Move.load(f)
+    
+        move_player2 = MovePlayer(self.robot, m)
+
         move_player.start()
-        
+        move_player2.start()
+
         time.sleep(1.5)
 
         # print "1"
@@ -51,7 +60,7 @@ class DiscMed(pypot.primitive.Primitive):
         # self._speak.start(phrase)
         # phrase="""J’espère que tu comprends mieux l’hyperthyroïdie maintenant. Si tu as des questions, ou des choses que tu n’as pas bien comprises, n’hésite pas à en parler à ton médecin ou à une autre personne de l’hôpital. Ils pourront t’aider et t’expliquer."""
         # self._speak.start(phrase)
-        self._saytext.start("textToSpeech/arrivee.txt")
+        self._saytext.start("textToSpeech/disc_med.txt")
 
     def run(self):
 

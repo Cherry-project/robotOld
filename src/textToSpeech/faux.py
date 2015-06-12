@@ -34,6 +34,6 @@ class Faux(pypot.primitive.Primitive):
         move_player = MovePlayer(self.robot, m)
         move_player.start()
         
-        time.sleep(1.5)
+        time.sleep(2)
 
         self._speak.start("Non, ce n'est pas ça. Essaye encore!")
