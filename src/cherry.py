@@ -15,6 +15,9 @@ from textToSpeech.bonnard_1 import Bonnard1
 from textToSpeech.bonnard_1 import Bonnard2
 from textToSpeech.bonnard_1 import Bonnard3
 from textToSpeech.bonnard_1 import Bonnard4
+from textToSpeech.bonnard_1 import Bonnard5
+from textToSpeech.bonnard_1 import Bonnard6
+
 
 #from textToSpeech.say_hyper import SayHyper
 
@@ -141,6 +144,8 @@ class Cherry():
         robot.attach_primitive(Bonnard2(robot), "bonnard_2")
         robot.attach_primitive(Bonnard3(robot), "bonnard_3")
         robot.attach_primitive(Bonnard4(robot), "bonnard_4")
+        robot.attach_primitive(Bonnard5(robot), "bonnard_5")
+        robot.attach_primitive(Bonnard6(robot), "bonnard_6")
 
 
         # robot.attach_primitive(Eyes(robot), "eyes")
