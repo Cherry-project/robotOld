@@ -11,6 +11,11 @@ from textToSpeech.speak import Speak
 from textToSpeech.say_hello import SayHello
 from textToSpeech.speech import Speech
 from textToSpeech.say_text import SayText
+from textToSpeech.bonnard_1 import Bonnard1
+from textToSpeech.bonnard_1 import Bonnard2
+from textToSpeech.bonnard_1 import Bonnard3
+from textToSpeech.bonnard_1 import Bonnard4
+
 #from textToSpeech.say_hyper import SayHyper
 
 from behavior.idle import UpperBodyIdleMotion, HeadIdleMotion
@@ -132,6 +137,11 @@ class Cherry():
         robot.attach_primitive(SadBehave(robot), "sad_behave")
         robot.attach_primitive(RunLook(robot, self.camera, 50), "run_look") 
         robot.attach_primitive(Speech(robot), "speech")
+        robot.attach_primitive(Bonnard1(robot), "bonnard_1")
+        robot.attach_primitive(Bonnard2(robot), "bonnard_2")
+        robot.attach_primitive(Bonnard3(robot), "bonnard_3")
+        robot.attach_primitive(Bonnard4(robot), "bonnard_4")
+
 
         # robot.attach_primitive(Eyes(robot), "eyes")
         # robot.attach_primitive(Get_reaction(robot), "get_reaction")
