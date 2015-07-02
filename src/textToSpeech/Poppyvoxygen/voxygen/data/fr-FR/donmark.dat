@@ -1,0 +1,79 @@
+// MEL PauAll concat p_voy intonation
+    0    1      0      0       2      // fin de phrase
+    1    1      0      1       1      // ponctuation ", ou ( ou
+    2    1      0      1       1      // fin de groupe nominal
+    3    0      3      2       0      // fin de groupe verbal montant (3,1,2
+    4    0      3      5       0      // fin de groupe verbal descendant
+    5    0      1      2       0      // mot lexical neutre
+    6    0      1     10       0      // mot grammatical
+    7    1      0      3       1      // devant proposition intonation montante
+    8    2      0      4       0      // descendante
+    9    1      0      3       1      // comme 7
+   10    0      5      2       0      // marqueur pronom interrogatif début de phrase
+   11    3      5      2       0      // marqueur sur "QUEL EST" si phrase interrogative
+   12    1      2      1       1      // fin de phrase interrogative si 13 positionn
+   13    3      5     13       0      // inversion Verbe-sujet en début de phrase interrogative
+   14    0      4      2       0      // verbe début d'une phrase impérative
+   15    3      3      2       0      // verbe infinitif après inversion verbe-sujet
+   16    3      0      2       0      // inversion Verbe-sujet après un groupe nominal
+   17    1      2      1       1      // fin de groupe alternatif
+   18    1      0      0       2      // fin de phrase interrogative
+   19    1      2      1       1      // fin de phrase interrogative  globale
+   20    2      5      3       1      // groupe interrogatif
+   21    1      0      0       2      // fin de phrase alternative
+   22    0      0      2       0      // inversion verbe-sujet après pronom interrogatif
+   23    1      0      0       2      // fin de phrase exclamative
+   24    0      0      2       0      // inversion groupe sujet après marqueur 29
+   25    0      0      2       0      // mot lexical avant dernier mot d'une phrase finissant par un
+   26    1      0      1       1      // si 1 ou 2 mots entre virgule
+   27    2      0      4       1      // fin de groupe nominal sans pause
+   28    1      0      0       2      // fin de phrase interrogative courte
+   29    0      0     10       0      // mot grammatical
+   30    2      5      3       1      // pour les groupes interrogatifs
+   31    0      2      3       1      // marqueur mot lexical après groupe interrogatif marqué 10
+   32    0      0      2       0      // mot lexical précédant un mot lexical marqué 29
+   33    0      0      2       0      // participe passé après verbe-sujet dans phrase interrogative
+   34    0      1      2       0      // mot lexical devant petite prep; into descendante
+   35    0      1     13       0      // mot lexical devant petite prep; into montante
+   36    0      1     13       0      // mot lexical monosyllabique
+   37    3      0     12       0      // marqueur après verbe en début de phrase suivi d'1 chiffre + 'de,des
+   38    1      0      3       1      // marqueur syntaxique faible
+   39    0      4      2       0      // nom en début de phrase
+   40    0      1      8       0      // grosses prep
+   41    0      0      2       0      // Adverbe
+   42    1      0      0       2      // ponctuation
+   43    2      0      3       1      // marqueur 7 sans pause
+   44    1      0      1       1      // fin d'incise
+   45    4      0     12       0      // marqueur adverbe après verbe dans Interro
+   46    1      2      1       1      // fin interro débutant par adv ou pronom interro
+   47    3      0     13       0      // mot devant grosses preps sans pause ni all
+   48    2      5      3       1      // marqueur 43 en début de phrase
+   49    1      0      1       2      // marqueur de confirmation
+   50    1      2      1       1      // marqueur de doute
+   51    2      0      4       1      // marqueur ap gr verbal si phrase > 15syll
+   52    2      0      4       1      // marqueur 15 avec allongement
+   53    1      2      1       1      // si 1 seul mot dans phrase exclam
+   54    1      2      1       1      // si
+   55    0      3      2       0      // si verbe attribut ou auxillaire
+   56    1      0      3       1      // interjection
+   57    1      0      1       2      // schéma descendant entre 2 coordinations
+   58    1      0      1       1      // fin de groupe nominal
+   59    1      0      1       1      // fin de groupe nominal
+   60    1      0      3       1      // fin de groupe nominal
+   61    0      5      2       0      // grosses prep en attaque de phrase
+   62    0      5     13       0      // ADV en début de phrase
+   63    0      0      2       0      // fin de groupe verbal montant fin de phrase
+   64    0      0      2       0      // mot lexical devant petite prep; into descendante
+   65    0      0     13       0      // mot lexical devant petite prep; into montante
+   66    0      5      2       0      // nom en début de phrase
+   67    2      0      4       1      // fin de groupe nominal sans pause en attaque
+   68    1      0      3       1      // proposition en fin de phrase
+   69    1      0      1       1      // schéma devant
+   70    0      1      5       0      // chiffre en fin de phrase
+   71    1      0      3       1      // 3e chiffre dans n° de téléphone
+   72    1      0      3       1      // 2e chiffre dans n° de téléphone
+   73    1      0      3       1      // 1er chiffre dans n° de téléphone
+   74    2      0     11       0      // devant proposition sans pause:intonation descendante
+   75    3      5     13       0      // fin de groupe verbal descendant en début de phrase
+   76    0      5      2       0      // grosses prep en attaque de phrase
+   77    0      1      8       0      // grosses prep débutant par petites prep

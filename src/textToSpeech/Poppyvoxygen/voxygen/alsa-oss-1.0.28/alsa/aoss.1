@@ -1,0 +1,50 @@
+.TH AOSS 1 "3 October 2001"
+.SH NAME
+aoss \- Wrapper script to facilitate use of the ALSA OSS compatibility
+library.
+.SH SYNOPSIS
+\fBaoss\fP \fIosscommand\fP [arguments]
+
+.SH DESCRIPTION
+\fBaoss\fP is a simple wrapper script which facilitates the use of the
+ALSA OSS compatibility library. It just sets the appropriate LD_PRELOAD
+path and then runs the command.
+
+This is useful in cases where routing settings (which can be made in
+your .asoundrc file) need to be applied to commands that use the OSS
+API.
+
+Examples of asoundrc configuration:
+
+pcm.dsp0 {
+	type plug
+	slave.pcm "hw:0,0"
+}
+
+or
+
+pcm.dsp0 {
+	type plug
+	slave.pcm "dmix"
+}
+
+In the above configuration examples, the pcm.dsp0 definition is used to wrap calls do /dev/dsp0. You can also wrap usage of /dev/dsp1, /dev/dsp2, etc. by defining pcm.dsp1, pcm.dsp2, etc..
+
+The PCM name to open can be given explicitly via \fBALSA_OSS_PCM_DEVICE\fP
+environment variable, too.  This overrides the default \fBdsp0\fP, etc.
+
+Note on mmap: aoss mmap support might be buggy. Your results may vary when trying to use an application that uses mmap'ing to access the OSS device files.
+
+
+.SS Arguments
+.TP
+\fIosscommand\fP
+A command that uses the OSS API
+.TP
+\fIarguments\fP
+The appropriate arguments and options for the OSS command.
+.TP
+
+.SH AUTHORS
+The OSS compatibility library is by Abramo Bagnara <abramo@alsa\-project.org>.
+The aoss script and this document are by James Tappin <james@xena.uklinux.net>.

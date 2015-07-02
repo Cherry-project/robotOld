@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lexicon version="1.0" xmlns="http://www.w3.org/2005/01/pronunciation-lexicon"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/2005/01/pronunciation-lexicon
+                        http://www.w3.org/TR/pronunciation-lexicon/pls.xsd"
+    xmlns:vox="http://www.voxygen.fr/tts"
+    alphabet="ipa" xml:lang="fr">
+<!--
+<lexeme vox:say-as="weekday">
+  <grapheme>0</grapheme>
+  <alias>dimanche</alias>
+</lexeme>
+<lexeme vox:say-as="weekday">
+  <grapheme>1</grapheme>
+  <alias>lundi</alias>
+</lexeme>
+<lexeme vox:say-as="weekday">
+  <grapheme>2</grapheme>
+  <alias>mardi</alias>
+</lexeme>
+<lexeme vox:say-as="weekday">
+  <grapheme>3</grapheme>
+  <alias>mercredi</alias>
+</lexeme>
+<lexeme vox:say-as="weekday">
+  <grapheme>4</grapheme>
+  <alias>jeudi</alias>
+</lexeme>
+<lexeme vox:say-as="weekday">
+  <grapheme>5</grapheme>
+  <alias>vendredi</alias>
+</lexeme>
+<lexeme vox:say-as="weekday">
+  <grapheme>6</grapheme>
+  <alias>samedi</alias>
+</lexeme>
+-->
+</lexicon>

@@ -1,0 +1,40 @@
+AC_PREREQ(2.59)
+AC_INIT(alsa-oss, 1.0.28)
+AM_INIT_AUTOMAKE
+
+AM_MAINTAINER_MODE([enable])
+
+LIBTOOL_VERSION_INFO="0:0:0"
+AC_SUBST(LIBTOOL_VERSION_INFO)
+
+AC_PREFIX_DEFAULT(/usr)
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S 
+AM_PROG_LIBTOOL
+
+dnl Check for aoss...
+AC_MSG_CHECKING(for aoss)
+AC_ARG_WITH(aoss,
+  [  --with-aoss=yes,no     OSS -> ALSA emulation library build],
+  with_aoss="$withval", with_aoss="yes")
+if test "$with_aoss" = "yes"; then
+  AC_MSG_RESULT(yes)
+else
+  AC_MSG_RESULT(no)
+fi
+AM_CONDITIONAL(WITH_AOSS, test x$with_aoss = xyes)
+
+if test "$with_aoss" = "yes"; then
+  OLD_CFLAGS="$CFLAGS"
+  OLD_LIBS="$LIBS"
+  AM_PATH_ALSA(0.9.0)
+  CFLAGS="$OLD_CFLAGS"
+  LIBS="$OLD_LIBS"
+fi
+
+AC_OUTPUT(Makefile alsa/Makefile alsa/aoss alsa/aoss.old \
+	  oss-redir/Makefile test/Makefile \
+          alsa/testaoss test/testaoss)
