@@ -1,8 +1,10 @@
 # cherry-project
 
-Voici le dÈpot collaboratif du projet Cherry.
+Voici le d√©pot collaboratif du projet Cherry.
 
-Ce projet consiste, gr‚ce au Poppy de l'inria, d'avoir un robot permettant de rÈduire l'isolement social des enfants hospitalisÈ, en Ètant son compagnon.
+Ce projet consiste, gr√¢ce au Poppy de l'inria, d'avoir un robot permettant de r√©duire l'isolement social des enfants hospitalis√©, en √©tant son compagnon.
+
+N'h√©siterz pas √† visiter notre [Wiki](https://github.com/Cherry-project/cherry-software/wiki)
 
 
 Plus d'information sur notre [facebook](https://www.facebook.com/projetcherry), notre [twitter](https://twitter.com/ProjetCherry) ou notre [blog](https://projetcherry.wordpress.com/)
