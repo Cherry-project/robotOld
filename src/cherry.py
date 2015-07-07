@@ -93,7 +93,7 @@ class Cherry():
                 m.compliant = False
 				
             imagePath = "../utils/img"
-            cascadePath = "../utils/opencv/data/lbpcascades/lbpcascade_frontalface.xml"
+            cascadePath = "../utils/opencv/data/haartcascades/haarcascade_frontalface_default.xml"
             self.camera = Camera(imagePath, cascadePath)
             self.isCamera = True
 
