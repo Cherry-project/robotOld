@@ -1,13 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python)
 # -*- coding: utf-8 -*-
 
 import time
-
+import sys
 import pypot.primitive
-import mp3play
+#import mp3play
 
 from gtts import gTTS
-
+from subprocess import call
 
 class Speak(pypot.primitive.Primitive):
 
@@ -29,9 +29,4 @@ class Speak(pypot.primitive.Primitive):
 
         tts = gTTS(self._text, lang='fr')
         tts.save(filename)
-
-        mp3 = mp3play.load(filename)
-
-        mp3.play()
-        time.sleep(mp3.seconds() + 1)
-        mp3.stop()
+        call (['play', '../utils/temp.mp3'])

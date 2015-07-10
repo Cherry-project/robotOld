@@ -4,12 +4,13 @@
 import time
 
 import pypot.primitive
-import mp3play
+#import mp3play
 import pypot.robot
 from pypot.primitive.move import MoveRecorder, Move, MovePlayer
 
 from gtts import gTTS
 
+from subprocess import call
 
 class Speech(pypot.primitive.Primitive):
 
@@ -17,7 +18,7 @@ class Speech(pypot.primitive.Primitive):
         pypot.primitive.Primitive.__init__(self, robot)
 
         self._text = "Bonjour ! Je m'appelle Cherry. Je suis là pour t'aider durant ton séjour."
-        self._move = "../src/moveRecorded/speech.move"  
+        self._move = "../src/moveRecorded/speech.move"
 
     def run(self):
 
@@ -34,15 +35,4 @@ class Speech(pypot.primitive.Primitive):
 
         tts = gTTS(self._text, lang='fr')
         tts.save(filename)
-
-        mp3 = mp3play.load(filename)
-        
-
-        move_player = MovePlayer(self.robot, m)
-       
-        move_player.start()
-        time.sleep(1)
-        mp3.play()
-        time.sleep(mp3.seconds() + 1)
-        mp3.stop()
-
+        call(["play", '../utils/temp.mp3'])
