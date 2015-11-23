@@ -1,4 +1,4 @@
-from textToSpeech.speak import Speak
+"""from textToSpeech.speak import Speak
 from textToSpeech.say_hello import SayHello
 from textToSpeech.speech import Speech
 from textToSpeech.say_text import SayText
@@ -7,7 +7,7 @@ from textToSpeech.bonnard_1 import Bonnard2
 from textToSpeech.bonnard_1 import Bonnard3
 from textToSpeech.bonnard_1 import Bonnard4
 from textToSpeech.bonnard_1 import Bonnard5
-from textToSpeech.bonnard_1 import Bonnard6
+from textToSpeech.bonnard_1 import Bonnard6"""
 
 
 #from textToSpeech.say_hyper import SayHyper
@@ -64,7 +64,7 @@ from vision.runLook import RunLook
 # from screen.sad2neutral import Sad2neutral
 
 
-def attach_primitives(robot, isCamera=True):
+def attach_primitives(cherry, isCamera=True):
     """ Attach all primitive to the robot.
     TO DO : Un parser pour faire automatiquement le nom afin de faire l'attachement seulement sur une boucle :
     for primitive in list_primitive:
@@ -72,6 +72,7 @@ def attach_primitives(robot, isCamera=True):
 
     Essayer aussi de se passer des imports ?
     """
+    robot = cherry.robot
 
     robot.attach_primitive(UpperBodyIdleMotion(robot, 50), 'upper_body_idle')
     robot.attach_primitive(HeadIdleMotion(robot, 50), "head_idle")
@@ -94,7 +95,7 @@ def attach_primitives(robot, isCamera=True):
     robot.attach_primitive(ThinkBehave(robot), "think_behave")
     robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
     robot.attach_primitive(BowBehave(robot), "bow_behave")
-    robot.attach_primitive(TalkOneBehave(robot), "talk_one_behave")
+    """robot.attach_primitive(TalkOneBehave(robot), "talk_one_behave")
     robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
     robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")
     robot.attach_primitive(TalkFourBehave(robot), "talk_four_behave")
@@ -109,11 +110,12 @@ def attach_primitives(robot, isCamera=True):
     robot.attach_primitive(Bonnard4(robot), "bonnard_4")
     robot.attach_primitive(Bonnard5(robot), "bonnard_5")
     robot.attach_primitive(Bonnard6(robot), "bonnard_6")
-
+"""
+    print isCamera
     if isCamera:
-        robot.attach_primitive(TrackingBehave(robot, robot.camera, 50), "tracking_behave")
-        robot.attach_primitive(RunLook(robot, robot.camera, 50), "run_look") 
-
+        robot.attach_primitive(TrackingBehave(robot, cherry.camera, 50), "tracking_behave")
+        #robot.attach_primitive(RunLook(robot, cherry.camera, 50), "run_look") 
+        robot.attach_primitive(RunLook(robot, cherry.camera, 1), "run_look") 
     # robot.attach_primitive(Eyes(robot), "eyes")
     # robot.attach_primitive(Get_reaction(robot), "get_reaction")
     # robot.attach_primitive(Get_fond(robot), "get_fond")
