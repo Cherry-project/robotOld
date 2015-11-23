@@ -115,7 +115,7 @@ def attach_primitives(cherry, isCamera=True):
     if isCamera:
         robot.attach_primitive(TrackingBehave(robot, cherry.camera, 50), "tracking_behave")
         #robot.attach_primitive(RunLook(robot, cherry.camera, 50), "run_look") 
-        robot.attach_primitive(RunLook(robot, cherry.camera, 1), "run_look") 
+        robot.attach_primitive(RunLook(robot, cherry.camera, 50), "run_look") 
     # robot.attach_primitive(Eyes(robot), "eyes")
     # robot.attach_primitive(Get_reaction(robot), "get_reaction")
     # robot.attach_primitive(Get_fond(robot), "get_fond")

@@ -27,8 +27,8 @@ class RunLook(pypot.primitive.LoopPrimitive):
 
 
     def update(self):
-        print "update !"
         self.camera.runCaptureLoop3()
+        
 
     def teardown(self):
         pass

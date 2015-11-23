@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import time
 
 
@@ -7,34 +7,43 @@ import pypot.primitive
 class TrackingBehave(pypot.primitive.LoopPrimitive):
 
     #coord donnees par camera
-    coordx=0
-    coordy=0
-    #angle but
-    goaly=0
-    goalz=0
-    #camera
-    resx=640.0
-    resy=480.0
-    anglex=160.0
-    angley=160.0
-    middlex=resx/2
-    middley=resy/2
-
-    counter=0
+    
     
     
     def __init__(self, robot, camera, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot,freq)
-        self.camera = camera
 
+        coordx=0
+        coordy=0
+        #angle but
+        goaly=0
+        goalz=0
+        #camera
+        resx=640.0
+        resy=480.0
+        anglex=160.0
+        angley=160.0
+        self.middlex=resx/2
+        self.middley=resy/2
+
+        self.focale = 424.0
+        self.gain = 0.4
+
+        mesz = 0;
+        mesy = 0;
+
+        counter=0
+
+
+        self._camera = camera
+        self._robot = robot
         print "init ok"       
 
 
     def setup(self):
-        robot = self.robot
 
-        self.robot.head_y.compliant = False
-        self.robot.head_z.compliant = False 
+        self._robot.head_y.compliant = False
+        self._robot.head_z.compliant = False 
 
     def teardown(self):
         robot = self.robot
@@ -42,6 +51,22 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
 
     def update(self):
 
+        if (self._camera.isSomebody==True) :
+
+            mesz = np.arctan(((self.middlex) - self._camera.xPosition)/self.focale)
+            mesz = mesz * 180/np.pi
+
+
+            mesy = np.arctan(((self.middley) - self._camera.yPosition)/self.focale)
+            mesy = mesy * 180/np.pi
+
+
+            goalz = self.robot.head_z.present_position + mesz*self.gain
+            goaly = self.robot.head_y.present_position - mesy*self.gain
+            self.robot.head_z.goal_position=goalz
+
+            self.robot.head_y.goal_position=goaly
+        """ Ancien code
         camera = self.camera
 
         if (camera.isSomebody==True) :
@@ -65,6 +90,5 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
                 self.robot.head_y.moving_speed=30
                 self.robot.head_z.goal_position=0
                 self.robot.head_y.goal_position=0
-
-
+        """
         

@@ -24,7 +24,7 @@ class Camera:
 
         self._cascade = False
         self._cam = False
-        sefl._frame = False
+        self._frame = False
 
 
     def setup(self):
@@ -37,48 +37,11 @@ class Camera:
 
         self._cascade = cv2.CascadeClassifier(self._cascadePath)
         
-        self._cam = cv2.VideoCapture(0)       
+        self._cam = cv2.VideoCapture(1)       
         if ( not self._cam.isOpened() ):
            print "camera non detectee!"
            sys.exit()      
         print "camera detectee!."
-        
-        """
-        while True:
-            # Capture frame-by-frame
-            ret, frame = self._cam.read()
-
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-            faces = self._cascade.detectMultiScale(
-                gray,
-                scaleFactor=1.2,
-                minNeighbors=5,
-                minSize=(30, 30),
-                flags=cv2.cv.CV_HAAR_SCALE_IMAGE
-            )
-
-            # Draw a rectangle around the faces
-            for (x, y, w, h) in faces:
-                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
-            # Display the resulting frame
-            cv2.imshow('Video', frame)
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-
-        self._cam.release()
-        cv2.destroyAllWindows()
-        """
-
-        """
-        self._cascade = cv2.CascadeClassifier(self._cascadePath)
-        if ( self._cascade.empty() ):
-            print "aucune cascade precisee!"
-            sys.exit()
-        print "cascade ok"
-        """
 
     def stop(self):
         self._cam.release()
@@ -386,15 +349,10 @@ class Camera:
 
 
     def runCaptureLoop3(self):
-        print "dedans";
-        
-        print "1";
+
         cam = self._cam
-        print "2"
         ret, frame = cam.read()
-        print ret
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        print "2"
 
         faces = self._cascade.detectMultiScale(
             gray,
@@ -408,21 +366,28 @@ class Camera:
         
         #Draw a rectangle around the faces
         for (x, y, w, h) in faces:
+            self.isSomebody = True
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+            #self.xPosition=(2*x+w)/2
+            #self.yPosition=(2*y+h)/2
+
+            self.xPosition=x
+            self.yPosition=y
 
             # Display the resulting frame
         #cv2.imwrite('Video.png', frame)
-        sefl._frame = frame
+        self._frame = frame
 
     def displayVideo(self):
         while True:
     
-            cv2.imshow('Video', sefl._frame)
+            cv2.imshow('Video', self._frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
-        self._cam.release()
+        #self._cam.release()
         cv2.destroyAllWindows()
 
 
