@@ -2,9 +2,16 @@
 
 Voici le dépot collaboratif du projet Cherry.
 
-Ce projet consiste, grâce au Poppy de l'inria, d'avoir un robot permettant de réduire l'isolement social des enfants hospitalisé, en étant son compagnon.
+Le projet Cherry est un projet communautaire visant à développer les usages en milieu hospitalier permettant de rompre l'isolement des enfants.
 
-N'hésiterz pas à visiter notre [Wiki](https://github.com/Cherry-project/cherry-software/wiki)
+Notre projet utilise le robot Poppy comme compagnon pour les enfants de maternelle/primaire hospitalisés. Cherry est là pour compenser une rupture sociale lors de l’hospitalisation. Il sert d'intermédiaire entre l'enfant, ses amis, sa famille et son enseignant et peut ainsi discuter avec lui ou encore lui proposer des jeux.
+
+Il agit également sur un plan pédagogique, afin d’inciter l'enfant à interagir avec l’espace scolaire, en lui proposant des quizz ou des jeux pédagogiques.
+
+Un dernier axe exploité consiste à assister le personnel hospitalier dans l’éducation thérapeutique. En effet, un message est parfois mieux accepté par l'enfant s’il est délivré par le robot plutôt que par un adulte en blouse blanche.
 
 
-Plus d'information sur notre [facebook](https://www.facebook.com/projetcherry), notre [twitter](https://twitter.com/ProjetCherry) ou notre [blog](https://projetcherry.wordpress.com/)
+N'hésitez pas à visiter notre [Wiki](https://github.com/Cherry-project/cherry-software/wiki)
+
+
+Pour nous aider à contribuer, n'hésitez pas pas à rejoindre notre [topic de discussion](https://forum.poppy-project.org/t/cherry-presentation/1866) sur le forum poppy.
