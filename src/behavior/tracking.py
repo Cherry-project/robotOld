@@ -29,11 +29,13 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
         self.focale = 424.0
         self.gain = 0.4
 
-        mesz = 0;
-        mesy = 0;
+        mesz = 0
+        mesy = 0
+
+        self.position_z = 0
+        self.position_y = 30
 
         counter=0
-
 
         self._camera = camera
         self._robot = robot
@@ -43,7 +45,10 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
     def setup(self):
 
         self._robot.head_y.compliant = False
-        self._robot.head_z.compliant = False 
+        self._robot.head_z.compliant = False
+
+        self._robot.head_z.moving_speed=60
+        self._robot.head_y.moving_speed=30
 
     def teardown(self):
         robot = self.robot
@@ -61,11 +66,30 @@ class TrackingBehave(pypot.primitive.LoopPrimitive):
             mesy = mesy * 180/np.pi
 
 
-            goalz = self.robot.head_z.present_position + mesz*self.gain
-            goaly = self.robot.head_y.present_position - mesy*self.gain
-            self.robot.head_z.goal_position=goalz
+            self.position_z = self.robot.head_z.present_position
+            self.position_y = self.robot.head_y.present_position
 
-            self.robot.head_y.goal_position=goaly
+            goalz = self.position_z + mesz*self.gain
+            goaly = self.position_y - mesy*self.gain
+
+            tol = 1.0
+
+            if((self.position_z + tol) >= goalz >= (self.position_z - tol)):
+                self.robot.head_z.goal_position=self.position_z
+
+            else :
+                self.robot.head_z.goal_position=goalz
+
+            if((self.position_y + tol) >= goaly >= (self.position_y - tol)):
+                self.robot.head_y.goal_position=self.position_y
+
+            else :
+                self.robot.head_y.goal_position=goaly
+
+
+        else :
+            self.robot.head_z.goal_position=self.position_z
+            self.robot.head_y.goal_position=self.position_y
         """ Ancien code
         camera = self.camera
 

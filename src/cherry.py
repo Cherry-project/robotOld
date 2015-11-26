@@ -85,7 +85,7 @@ class Cherry():
             self.robot.start_sync()
 
             for m in self.robot.motors:
-                m.moving_speed = 100
+                m.moving_speed = 60
 
             for m in self.robot.torso:
                 m.compliant = False

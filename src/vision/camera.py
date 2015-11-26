@@ -350,6 +350,12 @@ class Camera:
 
     def runCaptureLoop3(self):
 
+        _x = []
+        _y = []
+        _w = []
+        _h = []
+
+
         cam = self._cam
         ret, frame = cam.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -363,17 +369,33 @@ class Camera:
         )
 
         #print faces.x,face.y
-        
         #Draw a rectangle around the faces
+        self.isSomebody = False
         for (x, y, w, h) in faces:
             self.isSomebody = True
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-            #self.xPosition=(2*x+w)/2
-            #self.yPosition=(2*y+h)/2
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0,195,240), 1)
+            _x.append(x)
+            _y.append(y)
+            _w.append(w)
+            _h.append(h)
 
-            self.xPosition=x
-            self.yPosition=y
+            #if( ancienx < (2*x+w)/2  | ancieny < (2*x+w)/2) :
+        if (self.isSomebody == True):
+
+            x = np.amax(_x)
+            y = np.amax(_y)
+            w = np.amax(_w)
+            h = np.amax(_h)
+
+            self.xPosition=(2*x+w)/2
+            self.yPosition=(2*y+h)/2
+
+
+            #ancienx = self.xPosition
+            #ancieny = self.yPosition
+            #self.xPosition=x
+            #self.yPosition=y
 
             # Display the resulting frame
         #cv2.imwrite('Video.png', frame)
