@@ -90,7 +90,7 @@ class Cherry():
             for m in self.robot.torso:
                 m.compliant = False
 				
-            imagePath = "photo.jpg"
+            imagePath = "../utils/img/"
             cascadePath = "haarcascade_frontalface_default.xml"
             self.camera = Camera(imagePath, cascadePath)
             self.isCamera = True
