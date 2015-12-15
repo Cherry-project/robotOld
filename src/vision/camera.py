@@ -8,6 +8,46 @@ import random as rand
 from scipy import ndimage  #seulement parce que imread de OpenCV retourne "None" au lieu d'une liste
 
 
+def readimage(path, sz=None):
+    """
+    Reads the images in a given folder, resizes images on the fly if size is given.
+
+    Args:
+        path: Path to a folder with subfolders representing the subjects (persons).
+        sz: A tuple with the size Resizes 
+
+    Returns:
+        A list [X,y]
+
+        X: The images, which is a Python list of numpy arrays.
+        y: The corresponding labels (the unique number of the subject, person) in a Python list.
+    """
+    sz = (90,90)
+    
+    c = 0
+    X,y,z = [], [], []
+    for dirname, dirnames, filenames in os.walk(path):
+        for subdirname in dirnames:
+            subject_path = os.path.join(dirname, subdirname)
+            for filename in os.listdir(subject_path):
+                try:
+                    im = cv2.imread(os.path.join(subject_path, filename), cv2.IMREAD_GRAYSCALE)
+                    # resize to given size (if given)
+                    if (sz is not None):
+                        im = cv2.resize(im, sz)
+                    X.append(np.asarray(im, dtype=np.uint8))
+                    y.append(c)
+                except IOError, (errno, strerror):
+                    print "I/O error({0}): {1}".format(errno, strerror)
+                except:
+                    print "Unexpected error:", sys.exc_info()[0]
+                    raise
+            c = c+1
+            z.append(subdirname)
+    return [X,y,z]
+        
+
+
 
 class Camera:
 	
@@ -26,6 +66,11 @@ class Camera:
         self._cam = False
         self._frame = False
 
+        self._X = None
+        self._Y = None
+        self._Z = None
+        self._model = None
+
 
     def setup(self):
 
@@ -36,6 +81,29 @@ class Camera:
             pass # le chemin existe deja
 
         self._cascade = cv2.CascadeClassifier(self._cascadePath)
+
+        [self._X,self._Y,self._Z] = readimage(imgdir)
+
+        # Convert labels to 32bit integers. This is a workaround for 64bit machines,
+        # because the labels will truncated else. This will be fixed in code as 
+        # soon as possible, so Python users don't need to know about this.
+        # Thanks to Leo Dirac for reporting:
+        self._Y = np.asarray(self._Y, dtype=np.int32)
+
+        # Create the Eigenfaces model. We are going to use the default
+        # parameters for this simple example, please read the documentation
+        # for thresholding:
+
+        #model = cv2.createFisherFaceRecognizer()
+        self._model = cv2.createLBPHFaceRecognizer() 
+
+        # Read
+        # Learn the model. Remember our function returns Python lists,threshold=70.0
+        # so we use np.asarray to turn them into NumPy lists to make
+        # the OpenCV wrapper happy:
+        self._model.train(np.asarray(self._X), np.asarray(self._Y))
+
+
         
         self._cam = cv2.VideoCapture(1)       
         if ( not self._cam.isOpened() ):
@@ -58,8 +126,8 @@ class Camera:
         model= cv2.createLBPHFaceRecognizer(threshold=70.0) 
         
                 
-        images,labels,names = utils.retrain(imgdir,model,faceSize)
-        #print "Nouvel etat:",len(images),"images",len(names),"personnes"
+        images,labels,namess = utils.retrain(imgdir,model,faceSize)
+        #print "Nouvel etat:",len(images),"images",len(namess),"personnes"
         
         self.isSomebody = False
                   
@@ -91,7 +159,7 @@ class Camera:
                 [p_label, p_confidence] = model.predict(np.asarray(roi))
                 name="unknown"
                 if p_label !=-1 :
-                    name = names[p_label]
+                    name = namess[p_label]
                     self.isSomebody = True
                 cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
                 self.name = name
@@ -160,8 +228,8 @@ class Camera:
         model= cv2.createLBPHFaceRecognizer(threshold=70.0) 
         
                 
-        images,labels,names = utils.retrain(imgdir,model,faceSize)
-        print "Nouvel etat:",len(images),"images",len(names),"personnes"
+        images,labels,namess = utils.retrain(imgdir,model,faceSize)
+        print "Nouvel etat:",len(images),"images",len(namess),"personnes"
         while True:
         
             self._isSomebody = False
@@ -192,7 +260,7 @@ class Camera:
                     [p_label, p_confidence] = model.predict(np.asarray(roi))
                     name="unknown"
                     if p_label !=-1 :
-                        name = names[p_label]
+                        name = namess[p_label]
                         self._isSomebody = True
                     cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
                     self._name = name
@@ -222,8 +290,8 @@ class Camera:
         
             # on met a jour le modele
             if (k == 116): # 't' pressed
-                images,labels,names = utils.retrain(imgdir,model,faceSize)
-                print "Nouvel etat:",len(images),"images",len(names),"personnes"
+                images,labels,namess = utils.retrain(imgdir,model,faceSize)
+                print "Nouvel etat:",len(images),"images",len(namess),"personnes"
              		 
 
     def _runCaptureLoop2(self):
@@ -266,8 +334,8 @@ class Camera:
         self.compteur = 0
         
                 
-        images,labels,names = utils.retrain(imgdir,model,faceSize)
-        print "Nouvel etat:",len(images),"images",len(names),"personnes"
+        images,labels,namess = utils.retrain(imgdir,model,faceSize)
+        print "Nouvel etat:",len(images),"images",len(namess),"personnes"
 
         compteur = 0
 
@@ -306,7 +374,7 @@ class Camera:
                     [p_label, p_confidence] = model.predict(np.asarray(roi))
                     name="unknown"
                     if p_label !=-1 :
-                        name = names[p_label]                    
+                        name = namess[p_label]                    
 
                     cv2.putText( img, "%s %.2f %.2f" % (name,p_confidence,p_label),(x+10,y+20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
                     self.name = name
@@ -342,8 +410,8 @@ class Camera:
         
             # on met a jour le modele
             if (k == 116): # 't' pressed
-                images,labels,names = utils.retrain(imgdir,model,faceSize)
-                print "Nouvel etat:",len(images),"images",len(names),"personnes"
+                images,labels,namess = utils.retrain(imgdir,model,faceSize)
+                print "Nouvel etat:",len(images),"images",len(namess),"personnes"
             
             compteur = compteur + 1
 
@@ -355,6 +423,11 @@ class Camera:
         _w = []
         _h = []
 
+        X = self._X
+        Y = self._Y
+        Z = self._Z
+
+        model = self._model
 
         cam = self._cam
         ret, frame = cam.read()
@@ -372,9 +445,25 @@ class Camera:
         #Draw a rectangle around the faces
         self.isSomebody = False
         for (x, y, w, h) in faces:
-            self.isSomebody = True
+            isSomebody = True
+
+            crop_img = frame[y:y+w, x:x+h]
+
+            roi = cv2.resize( crop_img, (90,90) )
+            roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0,195,240), 1)
+
+            if len(X)>0:
+                
+                [p_label, p_confidence] = model.predict(np.asarray(roi))
+                name="unknown"
+                if p_label !=-1 :
+                    name = Z[p_label]
+                    isSomebody = True
+                cv2.putText( frame, "%s" % (name),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+            
+
             _x.append(x)
             _y.append(y)
             _w.append(w)
@@ -411,5 +500,3 @@ class Camera:
 
         #self._cam.release()
         cv2.destroyAllWindows()
-
-
