@@ -48,10 +48,8 @@ from attach_primitive import attach_primitives
 # from behavior.talkFour import TalkFourBehave
 # from behavior.tracking import TrackingBehave
 # from behavior.sad import SadBehave
-
-# from vision.camera import Camera
-
-# from vision.runLook import RunLook
+from vision.camera import Camera
+from vision.runLook import RunLook
 
 # from screen.eyes import Eyes
 # from screen.get_fond import Get_fond
@@ -92,11 +90,10 @@ class Cherry():
             for m in self.robot.torso:
                 m.compliant = False
 				
-            imagePath = "../utils/img"
-            cascadePath = "../utils/opencv/data/haartcascades/haarcascade_frontalface_default.xml"
+            imagePath = "photo.jpg"
+            cascadePath = "haarcascade_frontalface_default.xml"
             self.camera = Camera(imagePath, cascadePath)
             self.isCamera = True
-
 
 
 
@@ -169,5 +166,5 @@ class Cherry():
         # # robot.attach_primitive(Sad2neutral(robot), "sad2neutral")
         # # robot.attach_primitive(Sad(robot), "sad")
 
-        attach_primitives(robot, self.isCamera)
+        attach_primitives(self, self.isCamera)
 

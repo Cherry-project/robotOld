@@ -11,6 +11,7 @@ from scipy import ndimage
 
 
 class RunLook(pypot.primitive.LoopPrimitive):
+#class RunLook(pypot.primitive.Primitive):
 
     def __init__(self, robot, camera, freq):
         pypot.primitive.LoopPrimitive.__init__(self, robot, freq)
@@ -21,12 +22,13 @@ class RunLook(pypot.primitive.LoopPrimitive):
 
 
     def setup(self):
+        print "setup"
         self.camera.setup()
 
 
     def update(self):
-        self.camera._runCaptureLoop2()
-
+        self.camera.runCaptureLoop3()
+        
 
     def teardown(self):
         pass
