@@ -92,7 +92,7 @@ class Cherry():
 				
             imagePath = "../utils/img/"
             cascadePath = "haarcascade_frontalface_default.xml"
-            self.camera = Camera(imagePath, cascadePath)
+            self.camera = Camera( self.robot, imagePath, cascadePath)
             self.isCamera = True
 
 

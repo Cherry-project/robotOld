@@ -43,6 +43,8 @@ from vision.camera import Camera
 
 from vision.runLook import RunLook
 
+from textToSpeech.say_local import Say_local
+
 # from screen.eyes import Eyes
 # from screen.get_fond import Get_fond
 # from screen.get_reaction import Get_reaction
@@ -95,6 +97,8 @@ def attach_primitives(cherry, isCamera=True):
     robot.attach_primitive(ThinkBehave(robot), "think_behave")
     robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
     robot.attach_primitive(BowBehave(robot), "bow_behave")
+    robot.attach_primitive(Say_local(robot),"say_sentence_local")
+    
     """robot.attach_primitive(TalkOneBehave(robot), "talk_one_behave")
     robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
     robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")

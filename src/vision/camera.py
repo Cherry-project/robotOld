@@ -51,13 +51,15 @@ def readimage(path, sz=None):
 
 class Camera:
 	
-    def __init__(self, imagePath, cascadePath):
+    def __init__(self,robot, imagePath, cascadePath):
 
         print "init camera"
         self.name = "unknown"
         self.isSomebody = False
         self.xPosition = 0
         self.yPosition = 0
+
+        self._robot = robot
 
         self._cascadePath= cascadePath
         self._imagePath=imagePath
@@ -70,6 +72,8 @@ class Camera:
         self._Y = None
         self._Z = None
         self._model = None
+
+        self._name = "unknown"
 
 
     def setup(self):
@@ -431,6 +435,7 @@ class Camera:
 
         cam = self._cam
         ret, frame = cam.read()
+
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         faces = self._cascade.detectMultiScale(
@@ -444,8 +449,9 @@ class Camera:
         #print faces.x,face.y
         #Draw a rectangle around the faces
         self.isSomebody = False
+        self._name="unknown"
         for (x, y, w, h) in faces:
-            isSomebody = True
+            self.isSomebody = True
 
             crop_img = frame[y:y+w, x:x+h]
 
@@ -457,11 +463,10 @@ class Camera:
             if len(X)>0:
                 
                 [p_label, p_confidence] = model.predict(np.asarray(roi))
-                name="unknown"
                 if p_label !=-1 :
-                    name = Z[p_label]
-                    isSomebody = True
-                cv2.putText( frame, "%s" % (name),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+                    self._name = Z[p_label]
+                    #self._robot.say_sentence_local.start("Bonjour, " + name)
+                cv2.putText( frame, "%s" % (self._name),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
             
 
             _x.append(x)
@@ -495,7 +500,7 @@ class Camera:
     
             cv2.imshow('Video', self._frame)
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(30) & 0xFF == ord('q'):
                 break
 
         #self._cam.release()
