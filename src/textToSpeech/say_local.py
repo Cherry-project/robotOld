@@ -172,4 +172,3 @@ class Say_local(pypot.primitive.Primitive):
 
 		while snd.isPlaying():time.sleep(0.05)
 
-
