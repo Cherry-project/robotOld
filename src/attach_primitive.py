@@ -38,6 +38,19 @@ from behavior.talkThree import TalkThreeBehave
 from behavior.talkFour import TalkFourBehave
 from behavior.tracking import TrackingBehave
 from behavior.sad import SadBehave
+from behavior.extravertiArmsUp import ExtravertiArmsUpBehave
+from behavior.rest import RestBehave
+from behavior.me import MeBehave
+from behavior.question import QuestionBehave
+from behavior.hug import HugBehave
+from behavior.laugh import LaughBehave
+from behavior.meArm import MeArmBehave
+from behavior.hunkers import HunkersBehave
+from behavior.leftArms import LeftArmsBehave
+from behavior.rightArms import RightArmsBehave
+from behavior.rightHandUp import RightHandUpBehave
+from behavior.showFrontHunkers import ShowFrontHunkersBehave
+from behavior.showRightRest import ShowRightRestBehave
 
 from vision.camera import Camera
 
@@ -98,7 +111,22 @@ def attach_primitives(cherry, isCamera=True):
     robot.attach_primitive(CopyArmBehave(robot, 50), "copy_arm_behave")
     robot.attach_primitive(BowBehave(robot), "bow_behave")
     robot.attach_primitive(Say_local(robot),"say_sentence_local")
-    
+    robot.attach_primitive(ExtravertiArmsUpBehave(robot),"extra_arms_up")
+    robot.attach_primitive(RestBehave(robot),"rest_position")
+    robot.attach_primitive(MeBehave(robot),"me_behave")
+    robot.attach_primitive(QuestionBehave(robot),"question_behave")
+    robot.attach_primitive(HugBehave(robot),"hug_behave")
+    robot.attach_primitive(LaughBehave(robot),"laugh_behave")
+    robot.attach_primitive(MeArmBehave(robot),"me_arm_behave")
+    robot.attach_primitive(HunkersBehave(robot),"hunkers_behave")
+    robot.attach_primitive(LeftArmsBehave(robot),"left_arms_behave")
+    robot.attach_primitive(RightArmsBehave(robot),"right_arms_behave")
+    robot.attach_primitive(RightHandUpBehave(robot),"right_hand_up_behave")
+    robot.attach_primitive(ShowFrontHunkersBehave(robot),"show_front_hunkers_behave")
+    robot.attach_primitive(ShowRightRestBehave(robot),"show_right_rest_behave")
+
+
+
     """robot.attach_primitive(TalkOneBehave(robot), "talk_one_behave")
     robot.attach_primitive(TalkTwoBehave(robot), "talk_two_behave")
     robot.attach_primitive(TalkThreeBehave(robot), "talk_three_behave")
