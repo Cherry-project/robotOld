@@ -51,6 +51,12 @@ from behavior.rightArms import RightArmsBehave
 from behavior.rightHandUp import RightHandUpBehave
 from behavior.showFrontHunkers import ShowFrontHunkersBehave
 from behavior.showRightRest import ShowRightRestBehave
+from behavior.restTilted import RestTiltedBehave
+from behavior.leftArmUp import LeftArmUpBehave
+from behavior.youAndMe import YouAndMeBehave
+from behavior.littleLaugh import LittleLaughBehave
+from behavior.sigh import SighBehave
+from behavior.littleHug import LittleHugBehave
 
 from vision.camera import Camera
 
@@ -124,6 +130,12 @@ def attach_primitives(cherry, isCamera=True):
     robot.attach_primitive(RightHandUpBehave(robot),"right_hand_up_behave")
     robot.attach_primitive(ShowFrontHunkersBehave(robot),"show_front_hunkers_behave")
     robot.attach_primitive(ShowRightRestBehave(robot),"show_right_rest_behave")
+    robot.attach_primitive(RestTiltedBehave(robot),"rest_tilted_behave")
+    robot.attach_primitive(LeftArmUpBehave(robot),"left_arm_up_behave")
+    robot.attach_primitive(YouAndMeBehave(robot),"you_and_me_behave")
+    robot.attach_primitive(LittleLaughBehave(robot),"little_laugh_behave")
+    robot.attach_primitive(SighBehave(robot),"sigh_behave")
+    robot.attach_primitive(LittleHugBehave(robot),"little_hug_behave")
 
 
 
