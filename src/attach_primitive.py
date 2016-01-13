@@ -57,6 +57,14 @@ from behavior.youAndMe import YouAndMeBehave
 from behavior.littleLaugh import LittleLaughBehave
 from behavior.sigh import SighBehave
 from behavior.littleHug import LittleHugBehave
+from behavior.restOpen import RestOpenBehave
+from behavior.openArms import OpenArmsBehave
+from behavior.pointArmLeft import PointArmLeftBehave
+from behavior.openMove import OpenMoveBehave
+from behavior.doubleMe import DoubleMeBehave
+from behavior.swap import SwapBehave
+from behavior.disappointment import DisappointmentBehave
+from behavior.littleArmsUp import LittleArmsUpBehave
 
 from vision.camera import Camera
 
@@ -136,6 +144,14 @@ def attach_primitives(cherry, isCamera=True):
     robot.attach_primitive(LittleLaughBehave(robot),"little_laugh_behave")
     robot.attach_primitive(SighBehave(robot),"sigh_behave")
     robot.attach_primitive(LittleHugBehave(robot),"little_hug_behave")
+    robot.attach_primitive(RestOpenBehave(robot),"rest_open_behave")
+    robot.attach_primitive(OpenArmsBehave(robot),"open_arms_behave")
+    robot.attach_primitive(PointArmLeftBehave(robot),"point_arm_left_behave")
+    robot.attach_primitive(OpenMoveBehave(robot),"open_move_behave")
+    robot.attach_primitive(DoubleMeBehave(robot),"double_me_behave")
+    robot.attach_primitive(SwapBehave(robot),"swap_behave")
+    robot.attach_primitive(DisappointmentBehave(robot),"disappointment_behave")
+    robot.attach_primitive(LittleArmsUpBehave(robot),"little_arms_up_behave")
 
 
 
