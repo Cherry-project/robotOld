@@ -25,6 +25,7 @@ class CopyArmBehave(pypot.primitive.LoopPrimitive):
         robot.l_shoulder_y.goal_position = robot.r_shoulder_y.present_position
         robot.l_elbow_y.goal_position = robot.r_elbow_y.present_position
 
+    """
     def teardown(self):
-
-        self.robot.normal_behave.start()
+        #self.robot.normal_behave.start()
+    """

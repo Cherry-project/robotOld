@@ -65,6 +65,7 @@ from behavior.doubleMe import DoubleMeBehave
 from behavior.swap import SwapBehave
 from behavior.disappointment import DisappointmentBehave
 from behavior.littleArmsUp import LittleArmsUpBehave
+from behavior.seeYouSoon import SeeYouSoonBehave
 
 from vision.camera import Camera
 
@@ -152,6 +153,7 @@ def attach_primitives(cherry, isCamera=True):
     robot.attach_primitive(SwapBehave(robot),"swap_behave")
     robot.attach_primitive(DisappointmentBehave(robot),"disappointment_behave")
     robot.attach_primitive(LittleArmsUpBehave(robot),"little_arms_up_behave")
+    robot.attach_primitive(SeeYouSoonBehave(robot),"see_you_soon_behave")
 
 
 

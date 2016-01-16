@@ -3,6 +3,7 @@ import sys
 import cv2
 import numpy as np
 import utils
+import time
 
 import random as rand	
 from scipy import ndimage  #seulement parce que imread de OpenCV retourne "None" au lieu d'une liste
@@ -458,7 +459,9 @@ class Camera:
             roi = cv2.resize( crop_img, (90,90) )
             roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0,195,240), 1)
+            #cv2.rectangle(frame, (x, y), (x+w, y+h), (0,195,240), 1)
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0,255,0), 3)
+
 
             if len(X)>0:
                 
@@ -466,7 +469,7 @@ class Camera:
                 if p_label !=-1 :
                     self._name = Z[p_label]
                     #self._robot.say_sentence_local.start("Bonjour, " + name)
-                cv2.putText( frame, "%s" % (self._name),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+                #cv2.putText( frame, "%s" % (self._name),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
             
 
             _x.append(x)
@@ -499,6 +502,7 @@ class Camera:
         while True:
     
             cv2.imshow('Video', self._frame)
+            time.sleep(0.02)
 
             if cv2.waitKey(30) & 0xFF == ord('q'):
                 break
