@@ -11,7 +11,7 @@ Il agit également sur un plan pédagogique, afin d’inciter l'enfant à intera
 Un dernier axe exploité consiste à assister le personnel hospitalier dans l’éducation thérapeutique. En effet, un message est parfois mieux accepté par l'enfant s’il est délivré par le robot plutôt que par un adulte en blouse blanche.
 
 
-N'hésitez pas à visiter notre [Wiki](https://github.com/Cherry-project/cherry-software/wiki)
+N'hésitez pas à visiter notre [Wiki](https://github.com/Cherry-project/cherry-software/wiki) !
 
 
 Pour nous aider à contribuer, n'hésitez pas pas à rejoindre notre [topic de discussion](https://forum.poppy-project.org/t/cherry-presentation/1866) sur le forum poppy.
