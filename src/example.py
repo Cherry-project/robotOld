@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import time
 from poppy.creatures import PoppyHumanoid
 from cherry import Cherry
