@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import numpy
 import time
 
@@ -5,8 +8,8 @@ import time
 import pypot.primitive
 
 
-class BowBehave(pypot.primitive.Primitive):  
-        
+class BowBehave(pypot.primitive.Primitive):
+
     def run(self):
 
         poppy = self.robot
@@ -27,7 +30,3 @@ class BowBehave(pypot.primitive.Primitive):
         poppy.head_y.goto_position(30, 4, wait=False)
         poppy.r_shoulder_y.goto_position(-90, 4, wait=False)
         poppy.bust_y.goto_position(40, 4, wait=True)
-
-
-
-
