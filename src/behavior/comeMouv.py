@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import numpy
 import time
 
@@ -17,7 +20,7 @@ class ComeMouvBehave(pypot.primitive.LoopPrimitive):
 
         for m in robot.r_arm:
             m.compliant = False
-        
+
         robot.r_shoulder_x.goto_position(-20, 1, wait=False)
         robot.r_shoulder_y.goto_position(-30, 1, wait=False)
         robot.r_arm_z.goto_position(100, 2, wait=False)

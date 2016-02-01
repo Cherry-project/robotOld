@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import pypot.primitive
 from pypot.primitive.utils import Sinus
 
