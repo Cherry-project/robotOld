@@ -459,8 +459,8 @@ class Camera:
             roi = cv2.resize( crop_img, (90,90) )
             roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
 
-            #cv2.rectangle(frame, (x, y), (x+w, y+h), (0,195,240), 1)
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0,255,0), 3)
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0,195,240), 1)
+            #cv2.rectangle(frame, (x, y), (x+w, y+h), (0,255,0), 1)
 
 
             if len(X)>0:
@@ -469,7 +469,7 @@ class Camera:
                 if p_label !=-1 :
                     self._name = Z[p_label]
                     #self._robot.say_sentence_local.start("Bonjour, " + name)
-                #cv2.putText( frame, "%s" % (self._name),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
+                cv2.putText( frame, "%s" % ("Amandine"),(x,y-20), cv2.FONT_HERSHEY_PLAIN,1.5, (0,255,0))
             
 
             _x.append(x)
