@@ -3,30 +3,54 @@
 
 import time
 import sys
+import os
 import pypot.primitive
+import pyglet
+from pyglet.media import avbin
 #import mp3play
 
 from gtts import gTTS
-from subprocess import call
+#from subprocess import call
 
 class Speak(pypot.primitive.Primitive):
 
     def __init__(self, robot):
         pypot.primitive.Primitive.__init__(self, robot)
 
-        self._text = 'coucou'
+        self._text = u'coucou'
 
     def start(self, text):
-
-        self._text = text
-
+        
+        self._text = text.decode('utf-8', errors='replace')
         pypot.primitive.Primitive.start(self)
 
 
     def run(self):
 
-        filename = '../utils/temp.mp3'
-
+        
+        filename = '../utils/Phrase1.mp3'
+                
         tts = gTTS(self._text, lang='fr')
         tts.save(filename)
-        call (['play', '../utils/temp.mp3'])
+              
+        #call (['play', path])
+        #call (['play', '../utils/Phrase1.mp3'])
+        #os.startfile('../utils/Phrase1.mp3')
+        # OR
+        #call(os.path.abspath('../utils/Phrase1.mp3'), shell=True)
+
+        #clip = mp3play.load(os.path.abspath('../utils/Phrase1.mp3'))
+        #clip.play()
+        #
+        #while clip.isplaying() is not False:
+        #   time.sleep(0.5)
+        
+        mp3 = pyglet.media.load(filename)
+        mp3.play()
+        
+        # wait until terminated 
+        time.sleep(mp3.duration)
+            
+        
+        
+        

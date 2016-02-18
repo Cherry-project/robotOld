@@ -2,13 +2,11 @@
 #-*- coding: utf-8 -*-
 
 import time
-
-
 import pypot.primitive
 import pypot.robot
 from pypot.primitive.move import MoveRecorder, Move, MovePlayer
-import re
 
+import re
 
 from speak import Speak
 
@@ -31,9 +29,7 @@ class SayText(pypot.primitive.Primitive):
     def __init__(self, robot):
         pypot.primitive.Primitive.__init__(self, robot)
 
-        self._speak = Speak(robot)
-
-
+        self.robot._speak = Speak(robot)
 
     def start(self, textfile):
        
@@ -41,9 +37,10 @@ class SayText(pypot.primitive.Primitive):
 
         texts = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s', data.read())
 
-        for text in texts:
-            self.robot.speak.start(text)
-            time.sleep(0.1)
+        for text in texts:           
+            self.robot._speak.start(text)
+            print(text)
+            time.sleep(0.5)
 
     def run(self):
 
