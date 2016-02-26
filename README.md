@@ -15,3 +15,8 @@ N'hésitez pas à visiter notre [Wiki](https://github.com/Cherry-project/cherry-
 
 
 Pour nous aider à contribuer, n'hésitez pas pas à rejoindre notre [topic de discussion](https://forum.poppy-project.org/t/cherry-presentation/1866) sur le forum poppy, et regarder aussi le tuto_git !
+
+
+TODO :
+Mettre à jour ce Readme (installation bibliothèque, utilisaton, ..)
+Importer les primitives de vision
