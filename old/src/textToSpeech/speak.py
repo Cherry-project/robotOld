@@ -5,9 +5,10 @@ import time
 import sys
 import os
 import pypot.primitive
-import pyglet
-from pyglet.media import avbin
+#import pyglet
+#from pyglet.media import avbin
 #import mp3play
+import pygame.mixer
 
 from gtts import gTTS
 #from subprocess import call
@@ -45,11 +46,19 @@ class Speak(pypot.primitive.Primitive):
         #while clip.isplaying() is not False:
         #   time.sleep(0.5)
         
-        mp3 = pyglet.media.load(filename)
-        mp3.play()
+        #mp3 = pyglet.media.load(filename)
+        #mp3.play()
+        
+        pygame.mixer.init()
+        pygame.mixer.music.load(filename)
+        pygame.mixer.music.set_volume(0.3)
+        pygame.mixer.music.play()
+        
+        while pygame.mixer.music.get_busy():
+            pass
         
         # wait until terminated 
-        time.sleep(mp3.duration)
+        #time.sleep(mp3.duration)
             
         
         

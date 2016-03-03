@@ -1,3 +1,7 @@
 *.pyc
 *.mp3
 *~
+.eggs/
+build/
+cherry.egg-info/
+dist/
