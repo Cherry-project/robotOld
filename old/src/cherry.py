@@ -9,14 +9,14 @@ from poppy.creatures import PoppyHumanoid
 
 from attach_primitive import attach_primitives
 
-from vision.camera import Camera
-from vision.runLook import RunLook
+#from vision.camera import Camera
+#from vision.runLook import RunLook
 
 
 class Cherry():
     # TODO : Voir avec pierre si Cherry() puis self.robot ou Cherry(PoppyTorso)
 
-    def __init__(self, simulator=None, camera=True):
+    def __init__(self, simulator=None, camera=False):
         """Constructeur de la classe Cherry
 
         Param :
@@ -33,7 +33,7 @@ class Cherry():
         
         else:
             # TODO : Changer avec robot = PoppyTorso()
-            self.robot = from_json("../utils/poppy_torso_config.json")
+            self.robot = from_json("../resource/mandatory/poppy_torso_config.json")
             self.robot.start_sync()
 
             for m in self.robot.motors:
