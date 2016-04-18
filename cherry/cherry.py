@@ -22,4 +22,13 @@ class Cherry(AbstractPoppyCreature):
             m.moving_speed = 70
         
 
+        for m in robot.motors:
+            m.compliant = False
+            m.goal_position = 0
+
+        for m in robot.head:
+            m.compliant = True
+
         attach_primitives(robot)
+    
+        robot.send_ip.start()
