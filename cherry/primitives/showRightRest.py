@@ -36,14 +36,12 @@ class ShowRightRestBehave(pypot.primitive.Primitive):
 
 
         """
-        poppy.r_shoulder_y.goto_position(-70, 1.5, wait=False)
-        poppy.r_shoulder_x.goto_position(-35, 1.5, wait=False)
-        poppy.r_arm_z.goto_position(-35, 1.5, wait=False)
-        poppy.r_elbow_y.goto_position(80, 1.5, wait=False)
+        poppy.r_shoulder_y.goto_position(-70, 1, wait=False)
+        poppy.r_shoulder_x.goto_position(-40, 1, wait=False)
+        poppy.r_arm_z.goto_position(-35, 1, wait=False)
+        poppy.r_elbow_y.goto_position(80, 1, wait=False)
 
-        poppy.l_shoulder_y.goto_position(0, 1.5, wait=False)
-        poppy.l_shoulder_x.goto_position(10, 1.5, wait=False)
-        poppy.l_arm_z.goto_position(-35, 1.5, wait=False)
-        poppy.l_elbow_y.goto_position(5, 1.5, wait=True)
-        
-        time.sleep(0.5)
+        poppy.l_shoulder_y.goto_position(0, 1, wait=False)
+        poppy.l_shoulder_x.goto_position(10, 1, wait=False)
+        poppy.l_arm_z.goto_position(-35, 1, wait=False)
+        poppy.l_elbow_y.goto_position(0, 1, wait=True)
