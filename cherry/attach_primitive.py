@@ -10,6 +10,7 @@ from primitives.leftArmUp import LeftArmUpBehave
 from primitives.hunkers import HunkersBehave
 from primitives.led import Diode
 from primitives.littleArmsUp import LittleArmsUpBehave
+from primitives.showRightRest import ShowRightRestBehave
 
 from primitives.idle import UpperBodyIdleMotion, HeadIdleMotion, TorsoIdleMotion
 
@@ -35,6 +36,7 @@ def attach_primitives(robot, isCamera=True):
     robot.attach_primitive(LeftArmUpBehave(robot),"left_arm_up_behave")
     robot.attach_primitive(HunkersBehave(robot),"hunkers_behave")
     robot.attach_primitive(LittleArmsUpBehave(robot),"little_arms_up_behave")
+    robot.attach_primitive(ShowRightRestBehave(robot),"show_right_rest_behave")
 
     robot.attach_primitive(Diode(robot, 50),"diode_on")
     
