@@ -10,11 +10,11 @@ class LookRightBehave(pypot.primitive.Primitive):
 
         t =time.time()
 
-        poppy.head_z.goto_position(-50, 0.5, wait=False)
-        poppy.head_y_goto_posotion(0, 0,5, wait=True)
+        poppy.head_z.goto_position(-50, 1, wait=False)
+        poppy.head_y.goto_position(0, 1, wait=True)
 
-        poppy.head_z.goto_position(0, 0.5, wait=False)
-        poppy.head_y_goto_posotion(0, 0,5, wait=True)
+        poppy.head_z.goto_position(0, 1, wait=False)
+        poppy.head_y.goto_position(0, 1, wait=True)
 
         el = time.time() - t
         print el
@@ -28,11 +28,11 @@ class LookLeftBehave(pypot.primitive.Primitive):
 
         t =time.time()
 
-        poppy.head_z.goto_position(50, 0.5, wait=False)
-        poppy.head_y_goto_posotion(0, 0,5, wait=True)
+        poppy.head_z.goto_position(50, 1, wait=False)
+        poppy.head_y.goto_position(0, 1, wait=True)
 
-        poppy.head_z.goto_position(0, 0.5, wait=False)
-        poppy.head_y_goto_posotion(0, 0,5, wait=True)
+        poppy.head_z.goto_position(0, 1, wait=False)
+        poppy.head_y.goto_position(0, 1, wait=True)
 
         el = time.time() - t
         print el
