@@ -6,7 +6,7 @@ import time
 
 import pypot.primitive
 
-class PointArmLeftBehave(pypot.primitive.Primitive):
+class PointArmLeftOldBehave(pypot.primitive.Primitive):
     def run(self):
         poppy = self.robot
 

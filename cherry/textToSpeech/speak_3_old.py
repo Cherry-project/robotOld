@@ -53,63 +53,64 @@ class Speak(pypot.primitive.Primitive):
 
 	def run(self):
 
-            print "START"
-            print "self._text", type(self._text)
-                
-            file = open(csv_file_name, "a+")
-            reader = csv.DictReader(file)
-            file.seek(0)
+            if self._text != "":
+                print "START"
+                print "self._text", type(self._text)
             
-            filename_temp = find(reader, self._text)
+                file = open(csv_file_name, "a+")
+                reader = csv.DictReader(file)
+                file.seek(0)
             
-            filename = mp3_dir + filename_temp
+                filename_temp = find(reader, self._text)
+                
+                filename = mp3_dir + filename_temp
             
-            print filename
+                print filename
             
-            #clip = mp3play.load(os.path.abspath('../utils/Phrase1.mp3'))
-            #clip.play()
+                #clip = mp3play.load(os.path.abspath('../utils/Phrase1.mp3'))
+                #clip.play()
             
-            #while clip.isplaying() is not False:
-            #    time.sleep(0.5)
-            try:
-                pygame.mixer.init(16000)
-                pygame.mixer.music.load(os.path.abspath(filename))
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
+                #while clip.isplaying() is not False:
+                #    time.sleep(0.5)
+                try:
+                    pygame.mixer.init(16000)
+                    pygame.mixer.music.load(os.path.abspath(filename))
+                    pygame.mixer.music.set_volume(0.8)
+                    pygame.mixer.music.play()
                 
-                print "déjà connu"
+                    print "déjà connu"
                 
-            except:
+                except:
                 
-                print "DEBUT GENERATION"
-                tts = gTTS(self._text, lang='fr')
-                tts.save(filename)
+                    print "DEBUT GENERATION"
+                    tts = gTTS(self._text, lang='fr')
+                    tts.save(filename)
+                    
+                    print "nouvelle entrée"
+                    new = (self._text.encode('utf-8'), filename_temp)
+                    print new
+                    w = csv.writer(file)
+                    w.writerow(new)
                 
-                print "nouvelle entrée"
-                new = (self._text.encode('utf-8'), filename_temp)
-                print new
-                w = csv.writer(file)
-                w.writerow(new)
-                
-                print "FIN GENERATION"
-                pygame.mixer.init(16000)
-                pygame.mixer.music.load(os.path.abspath(filename))
-                pygame.mixer.music.set_volume(0.2)
-                pygame.mixer.music.play()
+                    print "FIN GENERATION"
+                    pygame.mixer.init(16000)
+                    pygame.mixer.music.load(os.path.abspath(filename))
+                    pygame.mixer.music.set_volume(0.8)
+                    pygame.mixer.music.play()
 
-            while pygame.mixer.music.get_busy():
-                time.sleep(0.5)
+                while pygame.mixer.music.get_busy():
+                    time.sleep(0.5)
                 
-            file.close()
+                file.close()
 
-            #pygame.mixer.music.stop()
-            #pygame.mixer.quit()
-            
-            #mp3 = pyglet.media.load(filename)
-            #mp3.play()
-            
-            # wait until terminated 
-            #time.sleep(mp3.duration)
+                #pygame.mixer.music.stop()
+                #pygame.mixer.quit()
+                
+                #mp3 = pyglet.media.load(filename)
+                #mp3.play()
+                
+                # wait until terminated 
+                #time.sleep(mp3.duration)
             
 	@property
 	def sentence_to_speak(self):

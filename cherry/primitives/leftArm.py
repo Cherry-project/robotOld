@@ -62,7 +62,7 @@ class PointArmLeftBehave(pypot.primitive.Primitive):
         poppy.r_shoulder_y.goto_position(0, 1, wait=False)
         poppy.r_shoulder_x.goto_position(-10, 1, wait=False)
         poppy.r_arm_z.goto_position(20, 1, wait=False)
-        poppy.r_elbow_y.goto_position(5, 1, wait=False)
+        poppy.r_elbow_y.goto_position(5, 1, wait=True)
 
         el = time.time() - t
         print el

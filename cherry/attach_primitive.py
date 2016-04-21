@@ -32,11 +32,11 @@ def attach_primitives(robot, isCamera=True):
     Essayer aussi de se passer des imports ?
     """
     robot.attach_primitive(RestOpenBehave(robot),"rest_open_behave")
-    robot.attach_primitive(PointArmLeftBehave(robot),"point_arm_left_behave")
+    robot.attach_primitive(PointArmLeftOldBehave(robot),"point_arm_left_old_behave")
     robot.attach_primitive(QuestionBehave(robot),"question_behave")
     robot.attach_primitive(DoubleMeBehave(robot),"double_me_behave")
     robot.attach_primitive(SwapBehave(robot),"swap_behave")
-    robot.attach_primitive(LeftArmUpOldBehave(robot),"left_arm_up_old_behave")
+    robot.attach_primitive(LeftArmUpBehave(robot),"left_arm_up_behave")
     robot.attach_primitive(HunkersBehave(robot),"hunkers_behave")
     robot.attach_primitive(LittleArmsUpBehave(robot),"little_arms_up_behave")
     robot.attach_primitive(ShowRightRestBehave(robot),"show_right_rest_behave")
@@ -49,7 +49,7 @@ def attach_primitives(robot, isCamera=True):
     robot.attach_primitive(PointArmRightBehave(robot),"point_arm_right_behave")
     robot.attach_primitive(ShowLeftBehave(robot),"show_left_behave")
     robot.attach_primitive(ShowLeftUpBehave(robot),"show_left_up_behave")
-    robot.attach_primitive(PointArmLeftBehave(robot),"point_left_behave")
+    robot.attach_primitive(PointArmLeftBehave(robot),"point_arm_left_behave")
 
 
     robot.attach_primitive(UpperBodyIdleMotion(robot, 50), 'upper_body_idle_motion')
