@@ -17,7 +17,7 @@ from primitives.rightArm import ShowRightBehave, ShowRightUpBehave, PointArmRigh
 
 from primitives.idle import UpperBodyIdleMotion, HeadIdleMotion, TorsoIdleMotion
 
-from textToSpeech.speak_3_old import Speak
+from textToSpeech.speak_3 import Speak
 from textToSpeech.say_text import SayText
 
 from primitives.send_ip import SendIp
