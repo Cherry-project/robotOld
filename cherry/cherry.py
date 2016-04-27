@@ -13,6 +13,10 @@ class Cherry(AbstractPoppyCreature):
     @classmethod
     def setup(cls, robot):
         robot._primitive_manager._filter = partial(numpy.sum, axis=0)
+        
+        
+        #cls._name = "sogeti" # Doesn't work, i have to find why
+        name = "sogeti"
 
         if False:
             cls.vrep_hack(robot)
@@ -31,4 +35,4 @@ class Cherry(AbstractPoppyCreature):
 
         attach_primitives(robot)
     
-        robot.send_ip.start()
+        robot.send_ip.start(name)

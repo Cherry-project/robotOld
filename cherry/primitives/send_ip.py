@@ -8,13 +8,15 @@ import json
 
 
 class SendIp(pypot.primitive.Primitive):
-    
-    def setup(self):
-        ip = "192.168.1.101"
+        
+        
+    def start(self, name):
+        ip = "192.168.1.250"
 
         print "on lance la requète :)"
+        print "http://"+ip+":8080/setup?id="+name
         
         try: 
-            requests.get("http://"+ip+":8080/setup/ip")
+            requests.get("http://"+ip+":8080/setup?id="+name)
         except:
             print "requète échoué"
