@@ -83,7 +83,7 @@ class Speak(pypot.primitive.Primitive):
                 #    time.sleep(0.5)
                 
                 
-                pygame.mixer.init(16000)
+                pygame.mixer.init(24000)
                 pygame.mixer.music.load(os.path.abspath(filename))
                 pygame.mixer.music.set_volume(0.8)
                 pygame.mixer.music.play()
