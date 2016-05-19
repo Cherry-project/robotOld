@@ -21,6 +21,7 @@ from textToSpeech.speak_3 import Speak
 from textToSpeech.say_text import SayText
 
 from primitives.send_ip import SendIp
+from primitives.test_gtts import TestGTTS
 
 def attach_primitives(robot, isCamera=True):
     """ Attach all primitive to the robot.
@@ -60,3 +61,4 @@ def attach_primitives(robot, isCamera=True):
     robot.attach_primitive(SayText(robot),"say_text")
 
     robot.attach_primitive(SendIp(robot),"send_ip")
+    robot.attach_primitive(TestGTTS(robot),"test_gtts")

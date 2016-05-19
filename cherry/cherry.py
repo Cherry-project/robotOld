@@ -15,8 +15,8 @@ class Cherry(AbstractPoppyCreature):
         robot._primitive_manager._filter = partial(numpy.sum, axis=0)
         
         
-        #cls._name = "sogeti" # Doesn't work, i have to find why
-        name = "sogeti"
+        #cls._name = "cherry" # Doesn't work, i have to find why
+        name = "cherry"
 
         if False:
             cls.vrep_hack(robot)
@@ -34,5 +34,5 @@ class Cherry(AbstractPoppyCreature):
             m.compliant = True
 
         attach_primitives(robot)
-    
+        robot.test_gtts.start()
         robot.send_ip.start(name)
