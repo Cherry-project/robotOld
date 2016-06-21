@@ -25,10 +25,10 @@ class SendIp(pypot.primitive.Primitive):
         ip = self._ip
 
         print "on lance la requète :)"
-        print "http://"+ip+":8080/setup?id="+name
+        print "http://"+ip+"/setup?id="+name
         
         try: 
-            requests.get("http://"+ip+":8080/setup?id="+name)
+            requests.get("http://"+ip+"/setup?id="+name)
         except:
             print "requète échoué"
 
