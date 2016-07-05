@@ -1,17 +1,27 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*- 
 
-from behavior.restOpen import RestOpenBehave
-from behavior.pointArmLeft import PointArmLeftBehave
-from behavior.question import QuestionBehave
-from behavior.doubleMe import DoubleMeBehave
-from behavior.swap import SwapBehave
-from behavior.leftArmUp import LeftArmUpBehave
-from behavior.hunkers import HunkersBehave
+from primitives.restOpen import RestOpenBehave
+from primitives.pointArmLeft import PointArmLeftOldBehave
+from primitives.question import QuestionBehave
+from primitives.doubleMe import DoubleMeBehave
+from primitives.swap import SwapBehave
+from primitives.leftArmUp import LeftArmUpBehave
+from primitives.hunkers import HunkersBehave
+from primitives.littleArmsUp import LittleArmsUpBehave
+from primitives.showRightRest import ShowRightRestBehave
+from primitives.head import LookLeftBehave, LookRightBehave
+from primitives.arms import OpenArmsBehave, PointArmsBehave
+from primitives.leftArm import ShowLeftBehave, ShowLeftUpBehave, PointArmLeftBehave
+from primitives.rightArm import ShowRightBehave, ShowRightUpBehave, PointArmRightBehave
 
-from textToSpeech.speak import Speak
+from primitives.idle import UpperBodyIdleMotion, HeadIdleMotion, TorsoIdleMotion
+
+from textToSpeech.speak_3 import Speak
 from textToSpeech.say_text import SayText
 
+from primitives.send_ip import SendIp
+from primitives.test_gtts import TestGTTS
 
 def attach_primitives(robot, isCamera=True):
     """ Attach all primitive to the robot.
@@ -22,13 +32,33 @@ def attach_primitives(robot, isCamera=True):
 
     Essayer aussi de se passer des imports ?
     """
-	poppy.attach_primitive(RestOpenBehave(poppy),"rest_open_behave")
-	poppy.attach_primitive(PointArmLeftBehave(poppy),"point_arm_left_behave")
-	poppy.attach_primitive(QuestionBehave(poppy,),"question_behave")
-	poppy.attach_primitive(DoubleMeBehave(poppy,),"double_me_behave")
-	poppy.attach_primitive(SwapBehave(poppy),"swap_behave")
-	poppy.attach_primitive(LeftArmUpBehave(poppy,),"left_arm_up_behave")
-	poppy.attach_primitive(HunkersBehave(poppy,),"hunkers_behave")
+    robot.attach_primitive(RestOpenBehave(robot),"rest_open_behave")
+    robot.attach_primitive(PointArmLeftOldBehave(robot),"point_arm_left_old_behave")
+    robot.attach_primitive(QuestionBehave(robot),"question_behave")
+    robot.attach_primitive(DoubleMeBehave(robot),"double_me_behave")
+    robot.attach_primitive(SwapBehave(robot),"swap_behave")
+    robot.attach_primitive(LeftArmUpBehave(robot),"left_arm_up_behave")
+    robot.attach_primitive(HunkersBehave(robot),"hunkers_behave")
+    robot.attach_primitive(LittleArmsUpBehave(robot),"little_arms_up_behave")
+    robot.attach_primitive(ShowRightRestBehave(robot),"show_right_rest_behave")
+    robot.attach_primitive(LookRightBehave(robot),"look_right_behave")
+    robot.attach_primitive(LookLeftBehave(robot),"look_left_behave")
+    robot.attach_primitive(OpenArmsBehave(robot),"open_arms_behave")
+    robot.attach_primitive(PointArmsBehave(robot),"point_arms_behave")
+    robot.attach_primitive(ShowRightBehave(robot),"show_right_behave")
+    robot.attach_primitive(ShowRightUpBehave(robot),"show_right_up_behave")
+    robot.attach_primitive(PointArmRightBehave(robot),"point_arm_right_behave")
+    robot.attach_primitive(ShowLeftBehave(robot),"show_left_behave")
+    robot.attach_primitive(ShowLeftUpBehave(robot),"show_left_up_behave")
+    robot.attach_primitive(PointArmLeftBehave(robot),"point_arm_left_behave")
+
+
+    robot.attach_primitive(UpperBodyIdleMotion(robot, 50), 'upper_body_idle_motion')
+    robot.attach_primitive(HeadIdleMotion(robot, 50), 'head_idle_motion')
+    robot.attach_primitive(TorsoIdleMotion(robot, 50), 'torso_idle_motion')
 
     robot.attach_primitive(Speak(robot),"speak")
     robot.attach_primitive(SayText(robot),"say_text")
+
+    robot.attach_primitive(SendIp(robot),"send_ip")
+    robot.attach_primitive(TestGTTS(robot),"test_gtts")

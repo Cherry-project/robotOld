@@ -47,7 +47,6 @@ class LeftArmUpBehave(pypot.primitive.Primitive):
         poppy.l_shoulder_x.goto_position(10, 1, wait=False)
         poppy.l_arm_z.goto_position(-20, 1, wait=False)
         poppy.l_elbow_y.goto_position(-15, 1, wait=True)
-        time.sleep(0.5)
 
 
 

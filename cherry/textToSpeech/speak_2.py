@@ -31,10 +31,14 @@ class Speak(pypot.primitive.Primitive):
 	def run(self):
 
         
-                filename = '../utils/Phrase1.mp3'
+                filename = 'Phrase1.mp3'
 
-                tts = gTTS((self._text), lang='fr')
-                tts.save(filename)
+                if self._text in "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 bonjour pas":
+                        filename = "/home/poppy/resources/audio/tts/" + self._text + ".mp3"
+
+                else:
+                        tts = gTTS((self._text), lang='fr')
+                        tts.save(filename)
 
                 #clip = mp3play.load(os.path.abspath('../utils/Phrase1.mp3'))
                 #clip.play()
@@ -44,14 +48,14 @@ class Speak(pypot.primitive.Primitive):
 
                 pygame.mixer.init(16000)
                 pygame.mixer.music.load(os.path.abspath(filename))
-                pygame.mixer.music.set_volume(0.8)
+                pygame.mixer.music.set_volume(0.5)
                 pygame.mixer.music.play()
                 
                 while pygame.mixer.music.get_busy():
                     time.sleep(0.5)
                 
-                pygame.mixer.music.stop()
-                pygame.mixer.quit()
+                #pygame.mixer.music.stop()
+                #pygame.mixer.quit()
                 
                 #mp3 = pyglet.media.load(filename)
                 #mp3.play()
