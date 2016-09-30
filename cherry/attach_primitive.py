@@ -14,14 +14,20 @@ from primitives.head import LookLeftBehave, LookRightBehave
 from primitives.arms import OpenArmsBehave, PointArmsBehave
 from primitives.leftArm import ShowLeftBehave, ShowLeftUpBehave, PointArmLeftBehave
 from primitives.rightArm import ShowRightBehave, ShowRightUpBehave, PointArmRightBehave
-
 from primitives.idle import UpperBodyIdleMotion, HeadIdleMotion, TorsoIdleMotion
 
+# Speak
 from textToSpeech.speak_3 import Speak
 from textToSpeech.say_text import SayText
-
+# Reset audio system
+from textToSpeech.reset_audio import ResetAudio
+ 
+#Send Ip
 from primitives.send_ip import SendIp
+
+# Test gTTS service -- need to test Watson service as well
 from primitives.test_gtts import TestGTTS
+
 
 def attach_primitives(robot, isCamera=True):
     """ Attach all primitive to the robot.
@@ -59,6 +65,8 @@ def attach_primitives(robot, isCamera=True):
 
     robot.attach_primitive(Speak(robot),"speak")
     robot.attach_primitive(SayText(robot),"say_text")
+    robot.attach_primitive(ResetAudio(robot),"reset_audio")
+
 
     robot.attach_primitive(SendIp(robot),"send_ip")
     robot.attach_primitive(TestGTTS(robot),"test_gtts")

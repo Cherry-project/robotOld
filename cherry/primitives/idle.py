@@ -78,8 +78,8 @@ class TorsoIdleMotion(pypot.primitive.LoopPrimitive):
         pypot.primitive.LoopPrimitive.__init__(self, robot, freq)
 
         sinus_args = [
-        {'motor_list': [self.robot.abs_z, ], 'amp': 2, 'freq': 0.2},
-        {'motor_list': [self.robot.bust_x, ], 'amp': 2, 'freq': 0.1}]
+        {'motor_list': [self.robot.abs_z, ], 'amp': 4, 'freq': 0.2},
+        {'motor_list': [self.robot.bust_x, ], 'amp': 4, 'freq': 0.1}]
         
         self.head_sinus = [Sinus(self.robot, 50, **s) for s in sinus_args]
 
