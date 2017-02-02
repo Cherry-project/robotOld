@@ -8,24 +8,22 @@ import pypot.primitive
 import pygame.mixer
 import csv
 from random import randint
-import subprocess
 #import pyglet
 #from pyglet.media import avbin
 #import mp3play
 
-#TTS engines
 from gtts import gTTS
+#from subprocess import call
 
 
 csv_file_name = "/home/poppy/resources/audio/list.csv"
 mp3_dir = "/home/poppy/resources/audio/"
 
 
-def find(reader, sentence, language, tts_engine):
+def find(reader, sentence):
 	for row in reader:
 		if row.get("text").decode('utf-8') == sentence:
-			if( language in row.get("file") and tts_engine in row.get("file")):
-				return row.get("file")
+			return row.get("file")
 
 	return False
 
@@ -34,19 +32,12 @@ def find(reader, sentence, language, tts_engine):
 
 class Speak(pypot.primitive.Primitive):
 
-	properties = pypot.primitive.Primitive.properties + ['sentence_to_speak','language', 'tts_engine']
-	def __init__(self, robot, text = 'coucou', lang= 'fr', ttsengine='google'):
+	properties = pypot.primitive.Primitive.properties + ['sentence_to_speak','language']
+	def __init__(self, robot, text = 'coucou', lang= 'fr'):
 		
 			pypot.primitive.Primitive.__init__(self, robot)
 			self._text = text.decode('utf-8')
 			self._lang = lang.decode('utf-8')
-
-			# TTS
-			self._ttsengine = ttsengine.decode('utf-8')
-			
-			self._rate = 24000
-
-
 			
 			print "INIT"
 			print text, type(text)
@@ -68,7 +59,7 @@ class Speak(pypot.primitive.Primitive):
 			else:
 				print "START"
 				print "self._text", type(self._text)
-				print "Bitrate: " + str(self._rate)
+				
 				
 				filename = self._filename
 				
@@ -76,15 +67,13 @@ class Speak(pypot.primitive.Primitive):
 				
 				
 				
-				pygame.mixer.init(self._rate)
+				pygame.mixer.init(24000)
 				pygame.mixer.music.load(os.path.abspath(filename))
 				pygame.mixer.music.set_volume(0.8)
 				pygame.mixer.music.play()
 				
 				while pygame.mixer.music.get_busy():
 					time.sleep(0.1)
-
-				pygame.mixer.quit()
 					
 			
 	@property
@@ -108,37 +97,18 @@ class Speak(pypot.primitive.Primitive):
 				file.seek(0)
 				
 				
-				filename_temp = find(reader, self._text, self._lang, self._ttsengine)
+				filename_temp = find(reader, self._text)
 				
 				if filename_temp:
 					self._filename = mp3_dir + filename_temp
 					
 				else:
-					filename_temp = self._ttsengine + "_" + self._lang + "_" + str(randint(1, 99999))+".mp3"
+					filename_temp = str(randint(1, 99999))+".mp3"
 					filename = mp3_dir + filename_temp
 					print "DEBUT GENERATION"
+					tts = gTTS(self._text, lang=self._lang)
+					tts.save(filename)
 					
-					if(self._ttsengine == "google"):
-						tts = gTTS(self._text, lang=self._lang)
-						tts.save(filename)
-						#self._rate = 24000
-						print "Play with Google"
-
-					if(self._ttsengine == "pico"):
-						
-						if (self._lang == "en"):
-							lang = 'en-US'
-						else:
-							lang = 'fr-FR'
-
-						filename_temp = filename_temp.replace(".mp3", ".wav")
-						filename = filename.replace(".mp3", ".wav")
-						print filename	
-						cmd = 'pico2wave -l=' + lang + ' -w=' + filename + ' "' + self._text + '"' +  ' || echo "No .wav file created"'
-						subprocess.call(cmd, shell=True)
-						#self._rate = 16000
-						print "Play with Pico"
-
 					
 					print "nouvelle entrée"
 					new = (self._text.encode('utf-8'), filename_temp)
@@ -156,22 +126,4 @@ class Speak(pypot.primitive.Primitive):
 	def language(self, lang):
 		print "Now, I speak " + lang
 		lang.encode('utf-8')
-		self._lang = lang
-
-
-
-	@property
-	def tts_engine(self):
-			return self._ttsengine
-	@tts_engine.setter
-	def tts_engine(self, engine):
-			
-			engine.encode('utf-8')
-			self._ttsengine = engine 
-
-			if(engine == "google"):
-				self._rate = 24000
-			if(engine == "pico"):
-				self._rate = 16000
-
-			print "Now, my TTS engine is: " + engine + " and the bitrate is: " + str(self._rate)
+		self._lang = lang 
