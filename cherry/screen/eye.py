@@ -6,7 +6,7 @@ import pypot.primitive
 
 class EyeBehave(pypot.primitive.Primitive):
 
-	properties = pypot.primitive.Primitive.properties + ['colorEye','moodEye']
+	properties = pypot.primitive.Primitive.properties + ['color','mood']
 
 	def __init__(self, robot,color = "blue",mood ="neutral"):
 		pypot.primitive.Primitive.__init__(self, robot)
@@ -25,19 +25,19 @@ class EyeBehave(pypot.primitive.Primitive):
 
 
 	@property
-	def colorEye(self):
+	def color(self):
 	    return self._color
 
-	@colorEye.setter
-	def colorEye(self,color):
+	@color.setter
+	def color(self,color):
 		print color
 		self._color = color
 
 	@property
-	def moodEye(self):
+	def mood(self):
 		return self._mood
 
-	@moodEye.setter
-	def moodEye(self,mood):
+	@mood.setter
+	def mood(self,mood):
 		print mood
 		self._mood = mood
