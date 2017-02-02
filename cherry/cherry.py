@@ -5,7 +5,7 @@ from functools import partial
 
 from poppy.creatures import AbstractPoppyCreature
 
-from .attach_primitive import attach_primitives
+from attach_primitive import attach_primitives
 
 
 
@@ -33,6 +33,17 @@ class Cherry(AbstractPoppyCreature):
         for m in robot.head:
             m.compliant = True
 
-        attach_primitives(robot)
-        robot.test_gtts.start()
-        robot.send_ip.start(name)
+        try:
+			attach_primitives(robot)
+        except:
+		    print "Cannot add primitives"
+		
+        try:
+		    robot.test_gtts.start()
+        except:
+		    print "Something goes wrong with gTTS"
+		
+        try:
+		    robot.send_ip.start(name)
+        except:
+		    print "Unable to send ip to the server"
