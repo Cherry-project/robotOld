@@ -43,4 +43,3 @@ def voice_recognition():
 	print(msg)
 
 	return(msg)
-	
