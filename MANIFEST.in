@@ -1,2 +1,0 @@
-include cherry/configuration/*.json
-include cherry/vrep-scene/*.ttt
